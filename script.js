@@ -1,96 +1,135 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Navegação de Abas
-    const navButtons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('.section-view');
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. NAVEGAÇÃO POR ABAS (Menus do Site)
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll(".section");
 
-    navButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            switchTab(index);
+    navLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute("href").substring(1);
+
+            sections.forEach(sec => sec.classList.remove("active-section"));
+            navLinks.forEach(l => l.classList.remove("active"));
+
+            document.getElementById(targetId).classList.add("active-section");
+            link.classList.add("active");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
-    // Tema Claro/Escuro
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
+    // 2. CONTROLES DE ACESSIBILIDADE
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
 
-    // Modo Dislexia
-    const dyslexiaToggle = document.getElementById('dyslexiaToggle');
-    if (dyslexiaToggle) {
-        dyslexiaToggle.addEventListener('click', toggleDyslexia);
-    }
-
-    // Simulador Fotoelétrico
-    const freqRange = document.getElementById('freqRange');
-    const intRange = document.getElementById('intRange');
-    if (freqRange && intRange) {
-        freqRange.addEventListener('input', updatePhotoelectric);
-        intRange.addEventListener('input', updatePhotoelectric);
-    }
-
-    // Botão Térmico
-    const calcBtn = document.getElementById('calcThermalBtn');
-    if (calcBtn) {
-        calcBtn.addEventListener('click', () => {
-            alert('Simulação térmica executada com sucesso! Eficiência estimada: 78%.');
-        });
-    }
-});
-
-function switchTab(index) {
-    const views = document.querySelectorAll('.section-view');
-    const buttons = document.querySelectorAll('.nav-btn');
-    
-    views.forEach((v, i) => {
-        v.classList.toggle('active', i === index);
-        buttons[i].classList.toggle('active', i === index);
+    // Alternar Tema (Claro / Escuro)
+    document.getElementById("toggle-theme").addEventListener("click", () => {
+        const currentTheme = htmlEl.getAttribute("data-theme");
+        htmlEl.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function switchTabByTarget(targetId) {
-    const views = document.querySelectorAll('.section-view');
-    const buttons = document.querySelectorAll('.nav-btn');
+    // Alto Contraste
+    document.getElementById("toggle-contrast").addEventListener("click", () => {
+        bodyEl.classList.toggle("high-contrast");
+    });
 
-    views.forEach((v, i) => {
-        const isActive = v.id === targetId;
-        v.classList.toggle('active', isActive);
-        if (isActive) {
-            buttons[i].classList.add('active');
-        } else {
-            buttons[i].classList.remove('active');
+    // Fonte Dislexia
+    document.getElementById("toggle-dyslexia").addEventListener("click", () => {
+        bodyEl.classList.toggle("dyslexia-font");
+    });
+
+    // Ajuste de Tamanho de Fonte
+    let currentFontSize = 16;
+    document.getElementById("increase-font").addEventListener("click", () => {
+        if (currentFontSize < 22) {
+            currentFontSize += 2;
+            htmlEl.style.fontSize = currentFontSize + "px";
         }
     });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function toggleTheme() {
-    const body = document.body;
-    const current = body.getAttribute('data-theme');
-    body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
-}
+    document.getElementById("decrease-font").addEventListener("click", () => {
+        if (currentFontSize > 12) {
+            currentFontSize -= 2;
+            htmlEl.style.fontSize = currentFontSize + "px";
+        }
+    });
 
-function toggleDyslexia() {
-    const body = document.body;
-    const current = body.getAttribute('data-dyslexia');
-    body.setAttribute('data-dyslexia', current === 'true' ? 'false' : 'true');
-}
+    // 3. SIMULADOR DO EFEITO FOTOELÉTRICO
+    const freqSlider = document.getElementById("freq-slider");
+    const intensSlider = document.getElementById("intens-slider");
+    const freqVal = document.getElementById("freq-val");
+    const intensVal = document.getElementById("intens-val");
+    const simOutput = document.getElementById("sim-output");
+    const electronContainer = document.getElementById("electron-container");
 
-function updatePhotoelectric() {
-    const freq = parseFloat(document.getElementById('freqRange').value);
-    const intensity = document.getElementById('intRange').value;
-    document.getElementById('freqVal').innerText = freq.toFixed(1);
-    document.getElementById('intVal').innerText = intensity;
+    function updateSimulator() {
+        const freq = parseInt(freqSlider.value);
+        const intens = parseInt(intensSlider.value);
 
-    const threshold = 4.5; // Frequência de corte
-    const res = document.getElementById('peResult');
+        freqVal.textContent = freq;
+        intensVal.textContent = intens;
 
-    if (freq < threshold) {
-        res.style.color = '#e63946';
-        res.innerText = `Frequência abaixo do limiar (${threshold}x10¹⁴ Hz). Nenhum elétron emitido, independente da intensidade (${intensity}%).`;
-    } else {
-        res.style.color = '#2a9d8f';
-        res.innerText = `Frequência suficiente! Elétrons emitidos com energia cinética proporcional à frequência.`;
+        // Frequência limiar considerada = 5
+        const threshold = 5;
+
+        electronContainer.innerHTML = "";
+
+        if (freq >= threshold) {
+            simOutput.textContent = `Status: Emissão ativa! Frequência (${freq}) ≥ Limiar (${threshold}). Elétrons emitidos.`;
+            simOutput.style.color = "var(--secondary)";
+
+            // Gerar animação de elétrons
+            const count = intens * 2;
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement("div");
+                el.style.position = "absolute";
+                el.style.left = "40px";
+                el.style.top = `${Math.random() * 150}px`;
+                el.style.width = "8px";
+                el.style.height = "8px";
+                el.style.backgroundColor = "#FFD166";
+                el.style.borderRadius = "50%";
+                el.style.animation = `shootElectron 1.5s linear infinite`;
+                el.style.animationDelay = `${Math.random()}s`;
+                electronContainer.appendChild(el);
+            }
+        } else {
+            simOutput.textContent = `Status: Sem emissão. Frequência (${freq}) abaixo da frequência de corte (${threshold}). Aumente a frequência!`;
+            simOutput.style.color = "#EF476F";
+        }
     }
+
+    freqSlider.addEventListener("input", updateSimulator);
+    intensSlider.addEventListener("input", updateSimulator);
+    updateSimulator();
+
+    // 4. DIAGRAMA INTERATIVO DA PISCINA
+    const flowButtons = document.querySelectorAll(".flow-btn");
+    const flowDesc = document.getElementById("flow-description");
+
+    const flowData = {
+        "1": "Etapa 1 (Sol): Emissão de fótons solares com espectro eletromagnético completo.",
+        "2": "Etapa 2 (Painel / Coletor): Conversão fotovoltaica em eletricidade (ou térmica direta em calor).",
+        "3": "Etapa 3 (Conversão / Bomba): A bomba de calor amplifica a energia térmica utilizando a eletricidade gerada.",
+        "4": "Etapa 4 (Piscina Aquecida): Transferência eficiente de calor mantendo a temperatura ideal da água do CEP."
+    };
+
+    flowButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            flowButtons.forEach(b => b.classList.remove("active-step"));
+            btn.classList.add("active-step");
+            const step = btn.getAttribute("data-step");
+            flowDesc.textContent = flowData[step];
+        });
+    });
+});
+
+// Estilo dinâmico para animação dos elétrons via JS
+const styleSheet = document.createElement("style");
+styleSheet.innerHTML = `
+@keyframes shootElectron {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(400px); opacity: 0; }
 }
+#electron-container { position: relative; width: 100%; height: 100%; }
+`;
+document.head.appendChild(styleSheet);
