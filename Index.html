@@ -1,351 +1,291 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light" data-contrast="normal" data-font="base" data-fontsize="normal">
+<html lang="pt-BR" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Site educacional interativo sobre efeito fotoelétrico, energia fotovoltaica e aquecimento sustentável da piscina do CEP.">
-<title>Sol, Água e Energia — Efeito Fotoelétrico e a Piscina do CEP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luz, Energia e Sustentabilidade | CEP</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts para Swiss Design e acessibilidade -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<a href="#conteudo" class="skip-link">Pular para o conteúdo principal</a>
-
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
-<header class="site-header" role="banner">
-  <div class="header-inner">
-    <a href="#mapa" class="brand" aria-label="Sol, Água e Energia — página inicial">
-      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <circle cx="20" cy="16" r="8" fill="var(--sol)"/>
-        <g stroke="var(--sol)" stroke-width="2.5" stroke-linecap="round">
-          <line x1="20" y1="2" x2="20" y2="6"/>
-          <line x1="20" y1="26" x2="20" y2="30"/>
-          <line x1="6" y1="16" x2="10" y2="16"/>
-          <line x1="30" y1="16" x2="34" y2="16"/>
-          <line x1="10" y1="6" x2="13" y2="9"/>
-          <line x1="27" y1="23" x2="30" y2="26"/>
-          <line x1="30" y1="6" x2="27" y2="9"/>
-          <line x1="13" y1="23" x2="10" y2="26"/>
-        </g>
-        <path d="M2 34 Q8 30 14 34 T26 34 T38 34" fill="none" stroke="var(--agua)" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-      Sol, Água e Energia
-    </a>
-
-    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" id="nav-toggle">☰ Menu</button>
-
-    <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
-      <a href="#mapa">Mapa</a>
-      <a href="#fotovoltaico">Fotovoltaico</a>
-      <a href="#piscina">Piscina</a>
-      <a href="#sustentabilidade">Sustentabilidade</a>
-      <a href="#fisica">Física</a>
-      <a href="#robotica">Robótica</a>
-      <a href="#grupo">Grupo</a>
-    </nav>
-
-    <div class="a11y-bar" role="group" aria-label="Controles de acessibilidade">
-      <button class="a11y-btn" id="btn-theme" aria-pressed="false" aria-label="Alternar modo escuro">
-        <span aria-hidden="true">🌙</span> <span class="btn-label">Escuro</span>
-      </button>
-      <button class="a11y-btn" id="btn-contrast" aria-pressed="false" aria-label="Ativar alto contraste">
-        <span aria-hidden="true">◐</span> <span class="btn-label">Contraste</span>
-      </button>
-      <button class="a11y-btn" id="btn-dyslexia" aria-pressed="false" aria-label="Ativar fonte para dislexia">
-        <span aria-hidden="true">Aa</span> <span class="btn-label">Dislexia</span>
-      </button>
-      <button class="a11y-btn" id="btn-font-down" aria-label="Diminuir tamanho do texto">A−</button>
-      <button class="a11y-btn" id="btn-font-up" aria-label="Aumentar tamanho do texto">A+</button>
-    </div>
-  </div>
-</header>
-
-<main id="conteudo" tabindex="-1">
-
-<!-- ============================================================
-     SEÇÃO 01 — MAPA DO SITE
-     ============================================================ -->
-<section id="mapa" class="hero wrap" aria-labelledby="titulo-mapa">
-  <div class="hero-grid">
-    <div class="hero-text">
-      <p class="eyebrow">Projeto integrador · CEP · Turma 2M</p>
-      <h1 id="titulo-mapa">Sol, água<br><em>e energia.</em></h1>
-      <p class="lead">Como a luz do sol se transforma em eletricidade — e como essa eletricidade pode aquecer a piscina do CEP com menos impacto ambiental. Um site interativo sobre <strong>efeito fotoelétrico</strong>, <strong>energia fotovoltaica</strong> e <strong>sustentabilidade</strong>.</p>
-      <div class="hero-actions">
-        <a href="#fotovoltaico" class="btn btn-primary">Começar pelo efeito fotovoltaico →</a>
-        <a href="#mapa-cards" class="btn btn-ghost">Ver o mapa do site</a>
-      </div>
-
-      <div class="libras-box" role="note" aria-label="Recurso em Libras">
-        <div class="libras-icon" aria-hidden="true">L</div>
-        <div>
-          <strong>Vídeo em Libras — introdução ao projeto</strong>
-          <span>Espaço reservado. Estrutura pronta: cole aqui o <code>&lt;video&gt;</code> com legenda e transcrição.</span>
+    <!-- BARRA DE ACESSIBILIDADE -->
+    <aside class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+        <div class="container toolbar-container">
+            <span>Acessibilidade:</span>
+            <button id="btn-high-contrast" aria-label="Alternar Alto Contraste">Alto Contraste</button>
+            <button id="btn-dyslexia" aria-label="Alternar Fonte para Dislexia">Fonte Dislexia</button>
+            <button id="btn-theme" aria-label="Alternar Modo Escuro e Claro">Modo Escuro</button>
+            <button id="btn-font-increase" aria-label="Aumentar Fonte">A+</button>
+            <button id="btn-font-decrease" aria-label="Diminuir Fonte">A-</button>
         </div>
-      </div>
-    </div>
+    </aside>
 
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="solGrad" cx="50%" cy="40%">
-            <stop offset="0%" stop-color="#FFD75E"/>
-            <stop offset="60%" stop-color="#FFB400"/>
-            <stop offset="100%" stop-color="#FF6B00"/>
-          </radialGradient>
-          <linearGradient id="aguaGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#4DA6FF"/>
-            <stop offset="100%" stop-color="#003D80"/>
-          </linearGradient>
-        </defs>
-        <circle cx="200" cy="140" r="70" fill="url(#solGrad)"/>
-        <g stroke="#FFB400" stroke-width="4" stroke-linecap="round">
-          <line x1="200" y1="30" x2="200" y2="55"/>
-          <line x1="200" y1="225" x2="200" y2="250"/>
-          <line x1="90" y1="140" x2="115" y2="140"/>
-          <line x1="285" y1="140" x2="310" y2="140"/>
-          <line x1="122" y1="62" x2="140" y2="80"/>
-          <line x1="260" y1="200" x2="278" y2="218"/>
-          <line x1="278" y1="62" x2="260" y2="80"/>
-          <line x1="140" y1="200" x2="122" y2="218"/>
-        </g>
-        <g transform="translate(140 250)">
-          <rect x="0" y="0" width="120" height="60" fill="#003D80" stroke="#0E1116" stroke-width="2" rx="3"/>
-          <line x1="30" y1="0" x2="30" y2="60" stroke="#4DA6FF" stroke-width="1.5"/>
-          <line x1="60" y1="0" x2="60" y2="60" stroke="#4DA6FF" stroke-width="1.5"/>
-          <line x1="90" y1="0" x2="90" y2="60" stroke="#4DA6FF" stroke-width="1.5"/>
-          <line x1="0" y1="20" x2="120" y2="20" stroke="#4DA6FF" stroke-width="1.5"/>
-          <line x1="0" y1="40" x2="120" y2="40" stroke="#4DA6FF" stroke-width="1.5"/>
-        </g>
-        <line x1="200" y1="210" x2="200" y2="250" stroke="#FFB400" stroke-width="3" stroke-dasharray="6 6"/>
-        <path d="M20 340 Q100 320 200 340 T380 340 L380 380 Q280 360 200 380 T20 380 Z" fill="url(#aguaGrad)"/>
-        <path d="M20 355 Q100 335 200 355 T380 355" fill="none" stroke="#4DA6FF" stroke-width="2" opacity="0.6"/>
-        <path d="M20 370 Q100 350 200 370 T380 370" fill="none" stroke="#4DA6FF" stroke-width="2" opacity="0.4"/>
-      </svg>
-    </div>
-  </div>
-
-  <h2 id="mapa-cards" class="sr-only">Mapa do site</h2>
-  <div class="map-grid">
-    <a class="map-card" href="#fotovoltaico">
-      <span class="num">02 · Fundamentos</span>
-      <h3>Efeito fotovoltaico e conversão da luz em energia</h3>
-      <p>Fótons, frequência de corte, junção p-n e por que os painéis funcionam.</p>
-    </a>
-    <a class="map-card" href="#piscina">
-      <span class="num">03 · Aplicação</span>
-      <h3>Aquecimento da piscina do CEP</h3>
-      <p>Painéis fotovoltaicos + bomba de calor: como dimensionar e comparar com o aquecimento solar térmico.</p>
-    </a>
-    <a class="map-card" href="#sustentabilidade">
-      <span class="num">04 · Impactos</span>
-      <h3>Sustentabilidade</h3>
-      <p>O que melhora e o que piora ao instalar (ou não) painéis fotovoltaicos.</p>
-    </a>
-    <a class="map-card" href="#fisica">
-      <span class="num">05 · Ciência</span>
-      <h3>Física e tecnociência</h3>
-      <p>Ondas eletromagnéticas, radiação do corpo negro e efeito fotoelétrico.</p>
-    </a>
-    <a class="map-card" href="#robotica">
-      <span class="num">06 · Montagem</span>
-      <h3>Robótica</h3>
-      <p>Sensores, microcontroladores e atuadores para monitorar e automatizar o sistema.</p>
-    </a>
-    <a class="map-card" href="#grupo">
-      <span class="num">07 · Autoria</span>
-      <h3>Grupo e professores</h3>
-      <p>Quem construiu o projeto, a turma e a orientação pedagógica.</p>
-    </a>
-  </div>
-</section>
-
-<!-- ============================================================
-     SEÇÃO 02 — FOTOVOLTAICO
-     ============================================================ -->
-<section id="fotovoltaico" class="wrap" aria-labelledby="titulo-fotovoltaico">
-  <div class="section-head">
-    <div class="section-num" aria-hidden="true">02</div>
-    <div>
-      <p class="eyebrow">Fundamentos</p>
-      <h2 id="titulo-fotovoltaico">Efeito fotovoltaico e conversão da luz em energia</h2>
-      <p class="lead">Para entender como um painel solar gera eletricidade, precisamos começar entendendo o que é a luz — e como ela carrega energia.</p>
-    </div>
-  </div>
-
-  <h3>O que são fótons e como sua energia depende da frequência?</h3>
-  <p>A luz é uma onda eletromagnética, mas também se comporta como um fluxo de <strong>partículas de energia</strong> chamadas <strong>fótons</strong>. Cada fóton carrega uma quantidade de energia que depende <em>apenas</em> da frequência da luz — não da intensidade. A relação foi proposta por Max Planck em 1900 e usada por Einstein em 1905:</p>
-
-  <div class="formula" role="math" aria-label="Energia do fóton é igual a constante de Planck vezes frequência">
-    <span class="hl">E = h · f</span>
-    <small>E = energia (joules) · h = 6,626 × 10⁻³⁴ J·s · f = frequência (hertz)</small>
-  </div>
-
-  <p>Como a frequência <em>f</em> e o comprimento de onda <em>λ</em> se relacionam por <strong>f = c / λ</strong> (sendo <em>c</em> ≈ 3 × 10⁸ m/s), também podemos escrever:</p>
-
-  <div class="formula" role="math" aria-label="Energia do fóton em elétron-volts">
-    <span class="hl">E(eV) ≈ 1240 / λ(nm)</span>
-    <small>Energia em elétron-volts quando o comprimento de onda está em nanômetros</small>
-  </div>
-
-  <div class="sim">
-    <p class="sim-title"><span aria-hidden="true">◉</span> Simulador — energia do fóton por comprimento de onda</p>
-    <div class="sim-controls">
-      <div>
-        <label for="wl">Comprimento de onda: <output id="wl-out" for="wl">500</output> nm</label>
-        <input type="range" id="wl" min="350" max="750" value="500" step="5" aria-describedby="wl-hint">
-        <p id="wl-hint" style="font-size:.85rem;opacity:.75;margin:0">Deslize para ver a cor e a energia de cada fóton.</p>
-      </div>
-    </div>
-    <div class="wl-display">
-      <div id="wl-color" class="wl-color" aria-hidden="true"></div>
-      <div>
-        <div class="readouts" style="margin:0">
-          <div class="readout"><span class="label">Frequência</span><span class="value" id="wl-freq">—</span></div>
-          <div class="readout"><span class="label">Energia</span><span class="value" id="wl-energy">—</span></div>
+    <!-- CABEÇALHO / NAVEGAÇÃO -->
+    <header class="site-header">
+        <div class="container header-grid">
+            <div class="logo">
+                <span class="logo-mark">CEP</span>
+                <span class="logo-text">Energia Solar & Física</span>
+            </div>
+            <nav class="main-nav" aria-label="Navegação Principal">
+                <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list">☰ Menu</button>
+                <ul id="nav-list" class="nav-list">
+                    <li><a href="#mapa" class="nav-link active">Mapa do Site</a></li>
+                    <li><a href="#efeito" class="nav-link">Efeito Fotovoltaico</a></li>
+                    <li><a href="#piscina" class="nav-link">Aquecimento Piscina</a></li>
+                    <li><a href="#sustentabilidade" class="nav-link">Sustentabilidade</a></li>
+                    <li><a href="#fisica" class="nav-link">Física & Tecnociência</a></li>
+                    <li><a href="#robotica" class="nav-link">Robótica</a></li>
+                    <li><a href="#equipe" class="nav-link">Equipe</a></li>
+                </ul>
+            </nav>
         </div>
-        <p id="wl-note" style="font-size:.9rem;margin:.8em 0 0"></p>
-      </div>
-    </div>
-    <p class="sr-only" id="wl-live" aria-live="polite"></p>
-  </div>
+    </header>
 
-  <div class="callout blue">
-    <strong>Ideia-chave:</strong> aumentar a intensidade da luz significa <em>mais fótons</em>, não fótons <em>mais energéticos</em>. Aumentar a frequência (diminuir o comprimento de onda) aumenta a energia de <em>cada</em> fóton. Isso é fundamental no efeito fotoelétrico e também nos painéis solares.
-  </div>
+    <main id="main-content">
+        
+        <!-- MENU 1: MAPA DO SITE -->
+        <section id="mapa" class="section container">
+            <div class="section-header">
+                <span class="section-tag">01 / Início</span>
+                <h2>Mapa do Site & Introdução</h2>
+            </div>
+            <p class="lead">Bem-vindo ao portal interativo do projeto de energia solar aplicado ao aquecimento da piscina do CEP. Utilize este mapa para navegar de forma rápida por todos os tópicos abordados.</p>
+            
+            <div class="map-grid">
+                <a href="#efeito" class="map-card">
+                    <h3>02. Efeito Fotovoltaico</h3>
+                    <p>Fótons, frequência de corte, conversão e comparação térmica.</p>
+                </a>
+                <a href="#piscina" class="map-card">
+                    <h3>03. Aquecimento da Piscina</h3>
+                    <p>Eletricidade fotovoltaica alimentando bombas de calor.</p>
+                </a>
+                <a href="#sustentabilidade" class="map-card">
+                    <h3>04. Sustentabilidade</h3>
+                    <p>Impactos ambientales, vantagens e desvantagens.</p>
+                </a>
+                <a href="#fisica" class="map-card">
+                    <h3>05. Física e Tecnociência</h3>
+                    <p>Ondas eletromagnéticas e radiação de corpo negro.</p>
+                </a>
+                <a href="#robotica" class="map-card">
+                    <h3>06. Robótica</h3>
+                    <p>Sensores, automação e componentes da montagem.</p>
+                </a>
+                <a href="#equipe" class="map-card">
+                    <h3>07. Quem Somos</h3>
+                    <p>Conheça os integrantes, turma e professores orientadores.</p>
+                </a>
+            </div>
+        </section>
 
-  <h3>O que significa frequência de corte?</h3>
-  <p>Quando a luz atinge um metal, cada fóton pode "arrancar" um elétron — mas só se sua energia for suficiente para vencer a <strong>função trabalho (W)</strong>, que é a energia mínima para libertar o elétron do material. A frequência mínima capaz disso é a <strong>frequência de corte (f₀)</strong>:</p>
+        <!-- MENU 2: EFEITO FOTOVOLTAICO -->
+        <section id="efeito" class="section container">
+            <div class="section-header">
+                <span class="section-tag">02 / Ciência da Luz</span>
+                <h2>Efeito Fotovoltaico e Conversão Luminosa</h2>
+            </div>
+            
+            <div class="content-block">
+                <h3>O que são fótons e como sua energia depende da frequência?</h3>
+                <p>A luz comporta-se como um feixe de pacotes de energia chamados <strong>fótons</strong>. A energia ($E$) de cada fóton é diretamente proporcional à frequência ($\nu$) da luz, descrita pela relação de Planck: $E = h \cdot \nu$, onde $h$ é a constante de Planck. Luzes de maior frequência (como o ultravioleta e a luz azul) carregam fótons mais energéticos do que luzes de menor frequência (como o infravermelho e o vermelho).</p>
+            </div>
 
-  <div class="formula" role="math" aria-label="Frequência de corte é função trabalho dividida pela constante de Planck">
-    <span class="hl">f₀ = W / h</span>
-    <small>Abaixo de f₀, nenhum elétron é ejetado — não importa o quanto a luz é intensa.</small>
-  </div>
+            <div class="content-block">
+                <h3>O que significa frequência de corte?</h3>
+                <p>A <strong>frequência de corte</strong> ($\nu_0$) é o limiar mínimo de frequência que a luz incidente deve ter para conseguir arrancar elétrons da superfície de um material semicondutor. Se a frequência for menor que a frequência de corte, por mais intensa que seja a luz, nenhum elétron será liberado.</p>
+            </div>
 
-  <p>Para o sódio metálico, W ≈ 2,27 eV, o que corresponde a f₀ ≈ 5,5 × 10¹⁴ Hz. Abaixo dessa frequência, <strong>não há emissão de elétrons</strong>, mesmo com luz intensíssima. Acima, elétrons são ejetados com energia cinética máxima:</p>
+            <!-- SIMULADOR INTERATIVO DO EFEITO FOTOELÉTRICO -->
+            <div class="simulator-box">
+                <h3>Simulador Interativo: Efeito Fotoelétrico</h3>
+                <p>Ajuste a frequência da luz para observar a emissão de elétrons.</p>
+                <div class="sim-controls">
+                    <label for="light-freq">Frequência da Luz:</label>
+                    <input type="range" id="light-freq" min="1" max="10" value="3" step="0.5">
+                    <span id="freq-val">3.0 Hz (Infravermelho/Vermelho)</span>
+                </div>
+                <div class="sim-viewport" id="sim-viewport">
+                    <div class="metal-plate">Placa Semicondutora</div>
+                    <div id="electron-container"></div>
+                </div>
+                <p id="sim-status" class="sim-feedback">A luz possui energia insuficiente para liberar elétrons.</p>
+            </div>
 
-  <div class="formula" role="math">
-    <span class="hl">E<sub>cin,máx</sub> = h·f − W</span>
-  </div>
+            <div class="content-block">
+                <h3>Como uma célula fotovoltaica transforma energia luminosa em elétrica?</h3>
+                <p>Quando fótons com energia superior ao bandgap do material atingem a célula de silício, eles transferem energia para os elétrons, permitindo que eles se movam livremente. O campo elétrico criado pela junção PN da célula empurra esses elétrons livres para os contatos metálicos, gerando uma corrente elétrica contínua.</p>
+            </div>
 
-  <div class="sim">
-    <p class="sim-title"><span aria-hidden="true">◉</span> Simulador — efeito fotoelétrico</p>
-    <div class="sim-canvas-wrap">
-      <canvas id="sim-fotoeletrico" role="img" aria-label="Animação: fótons de luz atingem uma placa de metal e podem ejetar elétrons."></canvas>
-    </div>
-    <div class="sim-controls grid-2">
-      <div>
-        <label for="freq">Frequência da luz: <output id="freq-out" for="freq">5,5 × 10¹⁴ Hz</output></label>
-        <input type="range" id="freq" min="3" max="12" value="5.5" step="0.1">
-      </div>
-      <div>
-        <label for="intens">Intensidade (nº de fótons): <output id="intens-out" for="intens">50%</output></label>
-        <input type="range" id="intens" min="0" max="100" value="50" step="1">
-      </div>
-    </div>
-    <div class="readouts">
-      <div class="readout"><span class="label">Energia do fóton</span><span class="value" id="energia-out">—</span></div>
-      <div class="readout"><span class="label">Função trabalho (Na)</span><span class="value">2,27 eV</span></div>
-      <div class="readout"><span class="label">E cinética máx.</span><span class="value" id="cinetica-out">—</span></div>
-      <div class="readout"><span class="label">f de corte</span><span class="value">≈ 5,5 ×10¹⁴ Hz</span></div>
-    </div>
-    <p id="status-emissao" class="status" aria-live="polite">—</p>
-  </div>
+            <div class="content-block">
+                <h3>Aquecimento Solar Térmico vs. Eletricidade Fotovoltaica</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Solar Térmico</th>
+                            <th>Fotovoltaico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Funcionamento</strong></td>
+                            <td>Aquecem água diretamente via coletores térmicos.</td>
+                            <td>Converte luz em eletricidade por efeito fotoelétrico.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Uso Principal</strong></td>
+                            <td>Aquecimento direto de água para banhos e piscinas.</td>
+                            <td>Geração de energia para eletrodomésticos, motores e bombas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-  <div class="callout">
-    <strong>Observação experimental famosa:</strong> se a frequência estiver abaixo de f₀, aumentar a intensidade <em>não</em> ejeta elétrons. Se estiver acima, aumentar a intensidade aumenta o <em>número</em> de elétrons ejetados, mas <em>não</em> a energia máxima de cada um. Essa foi a evidência decisiva de que a luz é quantizada.
-  </div>
+        <!-- MENU 3: AQUECIMENTO DA PISCINA -->
+        <section id="piscina" class="section container">
+            <div class="section-header">
+                <span class="section-tag">03 / Aplicação Prática</span>
+                <h2>Aquecimento da Piscina do CEP</h2>
+            </div>
+            <p>Neste projeto, a alternativa escolhida é utilizar painéis fotovoltaicos para gerar energia elétrica limpa que alimentará as <strong>bombas de calor (trocadores de calor)</strong> da piscina do CEP, garantindo eficiência térmica e controle automatizado.</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h4>1. Captação Solar</h4>
+                    <p>Painéis solares instalados convertem a radiação solar em corrente contínua (CC).</p>
+                </div>
+                <div class="step-card">
+                    <h4>2. Inversão de Energia</h4>
+                    <p>O inversor solar transforma a corrente contínua em corrente alternada (CA) compatível com a rede e equipamentos.</p>
+                </div>
+                <div class="step-card">
+                    <h4>3. Acionamento da Bomba</h4>
+                    <p>A eletricidade gerada alimenta a bomba de calor, que extrai calor do ar ambiente e transfere para a água da piscina com alta eficiência.</p>
+                </div>
+            </div>
+        </section>
 
-  <h3>Como uma célula fotovoltaica transforma energia luminosa em elétrica?</h3>
-  <p>Diferente do efeito fotoelétrico clássico (que ejeta elétrons para fora do metal), a célula fotovoltaica usa o <strong>efeito fotovoltaico interno</strong>: os fótons excitam elétrons <em>dentro</em> de um semicondutor, e uma estrutura chamada <strong>junção p-n</strong> separa as cargas, criando uma diferença de potencial.</p>
+        <!-- MENU 4: SUSTENTABILIDADE -->
+        <section id="sustentabilidade" class="section container">
+            <div class="section-header">
+                <span class="section-tag">04 / Meio Ambiente</span>
+                <h2>Sustentabilidade e Conscientização</h2>
+            </div>
+            <p>A transição energética para fontes renováveis é fundamental para mitigar as mudanças climáticas. Abaixo, analisamos os impactos ambientais associados ao uso de painéis fotovoltaicos.</p>
 
-  <ol>
-    <li><strong>Fóton entra no silício</strong> e, se sua energia for maior que o <em>band gap</em> (≈1,1 eV no silício), libera um par elétron-lacuna.</li>
-    <li><strong>Campo elétrico interno da junção p-n</strong> empurra elétrons para um lado e lacunas para o outro.</li>
-    <li><strong>Contatos metálicos</strong> coletam essas cargas: surge uma corrente contínua (CC) e uma tensão entre os terminais.</li>
-    <li><strong>Inversor</strong> converte CC em corrente alternada (CA), compatível com a rede.</li>
-  </ol>
+            <div class="impact-grid">
+                <div class="impact-card good">
+                    <h3>Impactos Positivos</h3>
+                    <ul>
+                        <li>Redução drástica na emissão de gases de efeito estufa ($CO_2$).</li>
+                        <li>Fonte de energia inesgotável e limpa durante o dia.</li>
+                        <li>Baixo custo de manutenção após a instalação.</li>
+                        <li>Valorização institucional do CEP como polo sustentável.</li>
+                    </ul>
+                </div>
+                <div class="impact-card bad">
+                    <h3>Impactos Negativos / Desafios</h3>
+                    <ul>
+                        <li>Impacto ambiental na extração de matérias-primas (silício, lítio).</li>
+                        <li>Descarte adequado necessário ao fim da vida útil dos painéis.</li>
+                        <li>Dependência das condições climáticas e intermitência noturna.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-  <div class="formula" role="math">
-    <span class="hl">P = V · I</span>
-    <small>Potência elétrica = tensão × corrente</small>
-  </div>
+        <!-- MENU 5: FÍSICA E TECNOCIÊNCIA -->
+        <section id="fisica" class="section container">
+            <div class="section-header">
+                <span class="section-tag">05 / Fundamentos Científicos</span>
+                <h2>Física e Tecnociência</h2>
+            </div>
+            
+            <div class="content-block">
+                <h3>Ondas Eletromagnéticas</h3>
+                <p>A luz solar viaja pelo espaço na forma de ondas eletromagnéticas, compostas por campos elétricos e magnéticos oscilantes perpendiculares entre si. Elas cobrem um vasto espectro, desde ondas de rádio até raios gama, sendo a luz visível e o infravermelho as principais faixas aproveitadas na conversão energética.</p>
+            </div>
 
-  <div class="callout blue">
-    <strong>Band gap ≠ função trabalho.</strong> Em metais, o efeito fotoelétrico ejeta elétrons para fora. Em semicondutores de células solares, o que importa é o band gap — a energia para saltar da banda de valência à de condução. É por isso que dizemos que a célula fotovoltaica é "prima" do efeito fotoelétrico, mas não idêntica a ele.
-  </div>
+            <div class="content-block">
+                <h3>Radiação do Corpo Negro</h3>
+                <p>O Sol atua de forma aproximada como um corpo negro ideal, emitindo radiação térmica em um espectro contínuo dependente de sua temperatura superficial (aproximadamente $5.500\,^{\circ}\text{C}$). Essa distribuição espectral determina quais comprimentos de onda de luz chegam à Terra e como otimizamos as células solares para absorvê-los.</p>
+            </div>
 
-  <div class="sim">
-    <p class="sim-title"><span aria-hidden="true">◉</span> Simulador — módulo fotovoltaico</p>
-    <div class="sim-controls">
-      <div>
-        <label for="pv-intensity">Irradiância solar: <output id="pv-int-out" for="pv-intensity">600</output> W/m²</label>
-        <input type="range" id="pv-intensity" min="0" max="1000" value="600" step="10">
-      </div>
-    </div>
-    <div class="readouts">
-      <div class="readout"><span class="label">Corrente</span><span class="value" id="pv-corrente">—</span></div>
-      <div class="readout"><span class="label">Tensão</span><span class="value" id="pv-tensao">—</span></div>
-      <div class="readout"><span class="label">Potência</span><span class="value" id="pv-potencia">—</span></div>
-    </div>
-    <div class="bars" aria-hidden="true">
-      <div class="bar-row">
-        <span>Potência gerada</span>
-        <div class="bar-track"><div class="bar-fill sol" id="pv-bar" style="width:0%"></div></div>
-        <span class="bar-value" id="pv-bar-val">0 W</span>
-      </div>
-    </div>
-    <p class="sr-only" id="pv-live" aria-live="polite"></p>
-  </div>
+            <div class="content-block">
+                <h3>O Efeito Fotoelétrico</h3>
+                <p>Explicado por Albert Einstein em 1905 (trabalho que lhe rendeu o Prêmio Nobel de Física), o efeito fotoelétrico provou a dualidade onda-partícula da luz, demonstrando que a energia luminosa é transferida em quanta discretos (fótons).</p>
+            </div>
+        </section>
 
-  <h3>Qual é a diferença entre aquecimento solar térmico e aquecimento com eletricidade fotovoltaica?</h3>
-  <div class="table-scroll">
-    <table class="data">
-      <thead>
-        <tr><th scope="col">Aspecto</th><th scope="col">Solar térmico</th><th scope="col">Fotovoltaico (+ bomba de calor)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>O que a placa faz</td><td>Aquece a água diretamente</td><td>Gera eletricidade</td></tr>
-        <tr><td>Eficiência típica</td><td>50–70% (calor útil)</td><td>15–22% (elétrica)</td></tr>
-        <tr><td>Uso</td><td>Água quente, piscina</td><td>Toda a eletricidade + bomba de calor</td></tr>
-        <tr><td>Necessita bomba de calor?</td><td>Não</td><td>Sim (para aquecer a água com eletricidade)</td></tr>
-        <tr><td>Área necessária</td><td>Maior por m² de painel, mas mais simples</td><td>Menor (bomba de calor tem COP ≈ 4)</td></tr>
-        <tr><td>Custo inicial</td><td>Menor</td><td>Maior (painéis + bomba de calor)</td></tr>
-        <tr><td>Flexibilidade</td><td>Só aquece água</td><td>Também alimenta luzes, bombas e sensores</td></tr>
-      </tbody>
-    </table>
-  </div>
+        <!-- MENU 6: ROBÓTICA -->
+        <section id="robotica" class="section container">
+            <div class="section-header">
+                <span class="section-tag">06 / Automação</span>
+                <h2>Robótica e Componentes do Sistema</h2>
+            </div>
+            <p>O protótipo físico desenvolvido no projeto integra sensores inteligentes para monitorar e otimizar o funcionamento do sistema de aquecimento da piscina.</p>
 
-  <h3>O efeito fotoelétrico explica painéis fotovoltaicos?</h3>
-  <p>Sim — mas com uma nuance importante. O <strong>efeito fotoelétrico clássico</strong> (Einstein, 1905) descreve a ejeção de elétrons de uma superfície metálica por fótons. O <strong>efeito fotovoltaico</strong> em células solares é o "primo interno" desse fenômeno: os fótons excitam elétrons, mas estes não são ejetados — são <em>separados</em> pela junção p-n e coletados como corrente elétrica.</p>
-  <p>Conceitualmente, as duas ideias compartilham a mesma base: <strong>a luz é quantizada em fótons e a energia de cada fóton depende da frequência</strong>. Sem o conceito de fóton, não entenderíamos por que só a luz com energia suficiente (acima do band gap no PV, acima da função trabalho no metal) gera efeito.</p>
+            <div class="robotics-grid">
+                <div class="robo-card">
+                    <h4>Sensor de Temperatura (DS18B20)</h4>
+                    <p>Monitora em tempo real a temperatura da água da piscina e do ambiente, enviando dados para o microcontrolador.</p>
+                </div>
+                <div class="robo-card">
+                    <h4>Sensor de Luminosidade (LDR / TSL2561)</h4>
+                    <p>Mede a intensidade da radiação solar disponível para calcular a eficiência teórica de geração energética no momento.</p>
+                </div>
+                <div class="robo-card">
+                    <h4>Microcontrolador (ESP32 / Arduino)</h4>
+                    <p>Processa os dados coletados pelos sensores e aciona os relés que controlam a bomba de calor de forma automatizada.</p>
+                </div>
+            </div>
+        </section>
 
-  <div class="libras-box" role="note" aria-label="Recurso em Libras">
-    <div class="libras-icon" aria-hidden="true">L</div>
-    <div>
-      <strong>Vídeo em Libras — fótons e efeito fotoelétrico</strong>
-      <span>Estrutura pronta: cole o vídeo com legenda e transcrição abaixo.</span>
-    </div>
-  </div>
-</section>
+        <!-- MENU 7: EQUIPE E CRÉDITOS -->
+        <section id="equipe" class="section container">
+            <div class="section-header">
+                <span class="section-tag">07 / Créditos</span>
+                <h2>Quem Somos</h2>
+            </div>
 
-<!-- ============================================================
-     SEÇÃO 03 — AQUECIMENTO DA PISCINA
-     ============================================================ -->
-<section id="piscina" class="wrap" aria-labelledby="titulo-piscina">
-  <div class="section-head">
-    <div class="section-num" aria-hidden="true">03</div>
-    <div>
-      <p class="eyebrow">Aplicação</p>
-      <h2 id="titulo-piscina">Aquecimento da piscina do CEP</h2>
-      <p class="lead">Uma das alternativas mais inteligentes para aquecer a piscina sem queimar combustíveis é gerar eletricidade com painéis fotovoltaicos e usá-la numa <strong>bomba de calor</strong>.</p>
-    </div>
-  </div>
+            <div class="credits-box">
+                <div class="credit-group">
+                    <h3>Integrantes do Grupo (Turma: 2M)</h3>
+                    <ul class="team-list">
+                        <li>Camilly <span>(Nº 03)</span></li>
+                        <li>Gloria <span>(Nº 09)</span></li>
+                        <li>Jiayu <span>(Nº 10)</span></li>
+                        <li>Julia E. <span>(Nº 12)</span></li>
+                    </ul>
+                </div>
+                <div class="credit-group">
+                    <h3>Professores Orientadores</h3>
+                    <ul class="teacher-list">
+                        <li><strong>Paulo</strong> — Física e Tecnociência</li>
+                        <li><strong>Levi</strong> — Robótica</li>
+                        <li><strong>Angelo</strong> — Programação</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-  <h3>Alternativa: gerar eletricidade para bombas de calor com painéis fotovoltaicos</h3>
-  <p>A ideia é simples: os painéis solares produzem eletricidade durante o dia; essa eletricidade alimenta
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 CEP — Projeto Educacional Interativo de Sustentabilidade e Física.</p>
+            <p class="libras-notice">♿ Estrutura preparada para tradução em Libras e navegação inclusiva.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
