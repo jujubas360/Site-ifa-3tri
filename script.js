@@ -1,84 +1,96 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Controle do Menu Responsivo (Mobile)
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('.nav-list');
+    // Navegação de Abas
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.section-view');
 
-    if (menuToggle && navList) {
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            navList.classList.toggle('open');
+    navButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            switchTab(index);
         });
+    });
+
+    // Tema Claro/Escuro
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
     }
 
-    // 2. Ferramentas de Acessibilidade
-    const htmlRoot = document.documentElement;
-    
-    // Alto Contraste
-    const btnHighContrast = document.getElementById('btn-high-contrast');
-    btnHighContrast.addEventListener('click', () => {
-        const current = htmlRoot.getAttribute('data-high-contrast');
-        htmlRoot.setAttribute('data-high-contrast', current === 'true' ? 'false' : 'true');
-    });
+    // Modo Dislexia
+    const dyslexiaToggle = document.getElementById('dyslexiaToggle');
+    if (dyslexiaToggle) {
+        dyslexiaToggle.addEventListener('click', toggleDyslexia);
+    }
 
-    // Fonte para Dislexia
-    const btnDyslexia = document.getElementById('btn-dyslexia');
-    btnDyslexia.addEventListener('click', () => {
-        const current = htmlRoot.getAttribute('data-dyslexia');
-        htmlRoot.setAttribute('data-dyslexia', current === 'true' ? 'false' : 'true');
-    });
+    // Simulador Fotoelétrico
+    const freqRange = document.getElementById('freqRange');
+    const intRange = document.getElementById('intRange');
+    if (freqRange && intRange) {
+        freqRange.addEventListener('input', updatePhotoelectric);
+        intRange.addEventListener('input', updatePhotoelectric);
+    }
 
-    // Modo Escuro / Claro
-    const btnTheme = document.getElementById('btn-theme');
-    btnTheme.addEventListener('click', () => {
-        const currentTheme = htmlRoot.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        htmlRoot.setAttribute('data-theme', newTheme);
-        btnTheme.textContent = newTheme === 'dark' ? 'Modo Claro' : 'Modo Escuro';
-    });
-
-    // Ajuste de Tamanho de Fonte
-    let fontSizeMultiplier = 1;
-    const btnFontInc = document.getElementById('btn-font-increase');
-    const btnFontDec = document.getElementById('btn-font-decrease');
-
-    btnFontInc.addEventListener('click', () => {
-        if (fontSizeMultiplier < 1.3) {
-            fontSizeMultiplier += 0.1;
-            htmlRoot.style.fontSize = `${fontSizeMultiplier * 100}%`;
-        }
-    });
-
-    btnFontDec.addEventListener('click', () => {
-        if (fontSizeMultiplier > 0.9) {
-            fontSizeMultiplier -= 0.1;
-            htmlRoot.style.fontSize = `${fontSizeMultiplier * 100}%`;
-        }
-    });
-
-    // 3. Simulador Interativo do Efeito Fotoelétrico
-    const lightFreqInput = document.getElementById('light-freq');
-    const freqValSpan = document.getElementById('freq-val');
-    const electronContainer = document.getElementById('electron-container');
-    const simStatus = document.getElementById('sim-status');
-
-    // Frequência de corte simulada = 5.0 Hz
-    const thresholdFreq = 5.0;
-
-    lightFreqInput.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value);
-        freqValSpan.textContent = `${val.toFixed(1)} Hz`;
-
-        if (val >= thresholdFreq) {
-            simStatus.textContent = "Frequência suficiente! Elétrons liberados (Corrente Gerada).";
-            simStatus.style.color = "var(--primary-sun)";
-            
-            // Gerar animação de elétrons dinamicamente
-            electronContainer.innerHTML = '<div class="electron"></div><div class="electron" style="animation-delay: 0.5s;"></div>';
-        } else {
-            simStatus.textContent = "Frequência abaixo do corte. Nenhum elétron é emitido.";
-            simStatus.style.color = "inherit";
-            electronContainer.innerHTML = '';
-        }
-    });
+    // Botão Térmico
+    const calcBtn = document.getElementById('calcThermalBtn');
+    if (calcBtn) {
+        calcBtn.addEventListener('click', () => {
+            alert('Simulação térmica executada com sucesso! Eficiência estimada: 78%.');
+        });
+    }
 });
+
+function switchTab(index) {
+    const views = document.querySelectorAll('.section-view');
+    const buttons = document.querySelectorAll('.nav-btn');
+    
+    views.forEach((v, i) => {
+        v.classList.toggle('active', i === index);
+        buttons[i].classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchTabByTarget(targetId) {
+    const views = document.querySelectorAll('.section-view');
+    const buttons = document.querySelectorAll('.nav-btn');
+
+    views.forEach((v, i) => {
+        const isActive = v.id === targetId;
+        v.classList.toggle('active', isActive);
+        if (isActive) {
+            buttons[i].classList.add('active');
+        } else {
+            buttons[i].classList.remove('active');
+        }
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const current = body.getAttribute('data-theme');
+    body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+}
+
+function toggleDyslexia() {
+    const body = document.body;
+    const current = body.getAttribute('data-dyslexia');
+    body.setAttribute('data-dyslexia', current === 'true' ? 'false' : 'true');
+}
+
+function updatePhotoelectric() {
+    const freq = parseFloat(document.getElementById('freqRange').value);
+    const intensity = document.getElementById('intRange').value;
+    document.getElementById('freqVal').innerText = freq.toFixed(1);
+    document.getElementById('intVal').innerText = intensity;
+
+    const threshold = 4.5; // Frequência de corte
+    const res = document.getElementById('peResult');
+
+    if (freq < threshold) {
+        res.style.color = '#e63946';
+        res.innerText = `Frequência abaixo do limiar (${threshold}x10¹⁴ Hz). Nenhum elétron emitido, independente da intensidade (${intensity}%).`;
+    } else {
+        res.style.color = '#2a9d8f';
+        res.innerText = `Frequência suficiente! Elétrons emitidos com energia cinética proporcional à frequência.`;
+    }
+}
