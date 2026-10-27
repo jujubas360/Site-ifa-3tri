@@ -1,135 +1,95 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. NAVEGAÇÃO POR ABAS (Menus do Site)
-    const navLinks = document.querySelectorAll(".nav-link");
-    const sections = document.querySelectorAll(".section");
+// --- ACESSIBILIDADE E CONTROLES ---
+const htmlRoot = document.documentElement;
+const btnTheme = document.getElementById('btn-theme');
+const btnHighContrast = document.getElementById('btn-high-contrast');
+const btnDyslexia = document.getElementById('btn-dyslexia');
+const fontSizeSlider = document.getElementById('font-size-slider');
 
-    navLinks.forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute("href").substring(1);
-
-            sections.forEach(sec => sec.classList.remove("active-section"));
-            navLinks.forEach(l => l.classList.remove("active"));
-
-            document.getElementById(targetId).classList.add("active-section");
-            link.classList.add("active");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-
-    // 2. CONTROLES DE ACESSIBILIDADE
-    const htmlEl = document.documentElement;
-    const bodyEl = document.body;
-
-    // Alternar Tema (Claro / Escuro)
-    document.getElementById("toggle-theme").addEventListener("click", () => {
-        const currentTheme = htmlEl.getAttribute("data-theme");
-        htmlEl.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
-    });
-
-    // Alto Contraste
-    document.getElementById("toggle-contrast").addEventListener("click", () => {
-        bodyEl.classList.toggle("high-contrast");
-    });
-
-    // Fonte Dislexia
-    document.getElementById("toggle-dyslexia").addEventListener("click", () => {
-        bodyEl.classList.toggle("dyslexia-font");
-    });
-
-    // Ajuste de Tamanho de Fonte
-    let currentFontSize = 16;
-    document.getElementById("increase-font").addEventListener("click", () => {
-        if (currentFontSize < 22) {
-            currentFontSize += 2;
-            htmlEl.style.fontSize = currentFontSize + "px";
-        }
-    });
-
-    document.getElementById("decrease-font").addEventListener("click", () => {
-        if (currentFontSize > 12) {
-            currentFontSize -= 2;
-            htmlEl.style.fontSize = currentFontSize + "px";
-        }
-    });
-
-    // 3. SIMULADOR DO EFEITO FOTOELÉTRICO
-    const freqSlider = document.getElementById("freq-slider");
-    const intensSlider = document.getElementById("intens-slider");
-    const freqVal = document.getElementById("freq-val");
-    const intensVal = document.getElementById("intens-val");
-    const simOutput = document.getElementById("sim-output");
-    const electronContainer = document.getElementById("electron-container");
-
-    function updateSimulator() {
-        const freq = parseInt(freqSlider.value);
-        const intens = parseInt(intensSlider.value);
-
-        freqVal.textContent = freq;
-        intensVal.textContent = intens;
-
-        // Frequência limiar considerada = 5
-        const threshold = 5;
-
-        electronContainer.innerHTML = "";
-
-        if (freq >= threshold) {
-            simOutput.textContent = `Status: Emissão ativa! Frequência (${freq}) ≥ Limiar (${threshold}). Elétrons emitidos.`;
-            simOutput.style.color = "var(--secondary)";
-
-            // Gerar animação de elétrons
-            const count = intens * 2;
-            for (let i = 0; i < count; i++) {
-                const el = document.createElement("div");
-                el.style.position = "absolute";
-                el.style.left = "40px";
-                el.style.top = `${Math.random() * 150}px`;
-                el.style.width = "8px";
-                el.style.height = "8px";
-                el.style.backgroundColor = "#FFD166";
-                el.style.borderRadius = "50%";
-                el.style.animation = `shootElectron 1.5s linear infinite`;
-                el.style.animationDelay = `${Math.random()}s`;
-                electronContainer.appendChild(el);
-            }
-        } else {
-            simOutput.textContent = `Status: Sem emissão. Frequência (${freq}) abaixo da frequência de corte (${threshold}). Aumente a frequência!`;
-            simOutput.style.color = "#EF476F";
-        }
+// Modo Escuro / Claro
+btnTheme.addEventListener('click', () => {
+    const currentTheme = htmlRoot.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        htmlRoot.setAttribute('data-theme', 'dark');
+        btnTheme.textContent = '☀️ Modo Claro';
+    } else {
+        htmlRoot.setAttribute('data-theme', 'light');
+        btnTheme.textContent = '🌙 Modo Escuro';
     }
-
-    freqSlider.addEventListener("input", updateSimulator);
-    intensSlider.addEventListener("input", updateSimulator);
-    updateSimulator();
-
-    // 4. DIAGRAMA INTERATIVO DA PISCINA
-    const flowButtons = document.querySelectorAll(".flow-btn");
-    const flowDesc = document.getElementById("flow-description");
-
-    const flowData = {
-        "1": "Etapa 1 (Sol): Emissão de fótons solares com espectro eletromagnético completo.",
-        "2": "Etapa 2 (Painel / Coletor): Conversão fotovoltaica em eletricidade (ou térmica direta em calor).",
-        "3": "Etapa 3 (Conversão / Bomba): A bomba de calor amplifica a energia térmica utilizando a eletricidade gerada.",
-        "4": "Etapa 4 (Piscina Aquecida): Transferência eficiente de calor mantendo a temperatura ideal da água do CEP."
-    };
-
-    flowButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            flowButtons.forEach(b => b.classList.remove("active-step"));
-            btn.classList.add("active-step");
-            const step = btn.getAttribute("data-step");
-            flowDesc.textContent = flowData[step];
-        });
-    });
 });
 
-// Estilo dinâmico para animação dos elétrons via JS
-const styleSheet = document.createElement("style");
-styleSheet.innerHTML = `
-@keyframes shootElectron {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(400px); opacity: 0; }
+// Alto Contraste
+btnHighContrast.addEventListener('click', () => {
+    htmlRoot.classList.toggle('high-contrast');
+    const isPressed = htmlRoot.classList.contains('high-contrast');
+    btnHighContrast.setAttribute('aria-pressed', isPressed);
+});
+
+// Fonte para Dislexia
+btnDyslexia.addEventListener('click', () => {
+    htmlRoot.classList.toggle('dyslexia-font');
+    const isPressed = htmlRoot.classList.contains('dyslexia-font');
+    btnDyslexia.setAttribute('aria-pressed', isPressed);
+});
+
+// Ajuste de Tamanho de Fonte
+fontSizeSlider.addEventListener('input', (e) => {
+    document.body.style.fontSize = e.target.value + 'px';
+});
+
+// --- SIMULADOR DE EFEITO FOTOELÉTRICO ---
+const freqSlider = document.getElementById('freq-slider');
+const intensitySlider = document.getElementById('intensity-slider');
+const freqVal = document.getElementById('freq-val');
+const intensityVal = document.getElementById('intensity-val');
+const metalSelect = document.getElementById('metal-select');
+const simStatusMsg = document.getElementById('sim-status-msg');
+
+function updatePhotoelectricSimulation() {
+    const f = parseFloat(freqSlider.value);
+    const intensity = parseInt(intensitySlider.value);
+    const phi = parseFloat(metalSelect.value);
+
+    freqVal.textContent = f.toFixed(1);
+    intensityVal.textContent = intensity;
+
+    // Constante proporcional simplificada para o ensino médio (h*f vs phi)
+    // Se f for menor que o limiar (exigido por phi), não há emissão.
+    // Limiar simulado: phi 2.0 -> f min 4.0; phi 4.5 -> f min 6.0; phi 5.1 -> f min 7.0
+    const thresholdFreq = phi * 1.25;
+
+    if (f >= thresholdFreq) {
+        simStatusMsg.textContent = `✅ Frequência suficiente! Elétrons emitidos com energia cinética devido ao brilho de ${intensity}%.`;
+        simStatusMsg.style.color = '#2ecc71';
+    } else {
+        simStatusMsg.textContent = `❌ Frequência abaixo do limiar (${thresholdFreq.toFixed(1)}). Aumente a frequência (nem o brilho máximo adianta!).`;
+        simStatusMsg.style.color = '#e74c3c';
+    }
 }
-#electron-container { position: relative; width: 100%; height: 100%; }
-`;
-document.head.appendChild(styleSheet);
+
+freqSlider.addEventListener('input', updatePhotoelectricSimulation);
+intensitySlider.addEventListener('input', updatePhotoelectricSimulation);
+metalSelect.addEventListener('change', updatePhotoelectricSimulation);
+
+// --- DIAGRAMA INTERATIVO DA PISCINA ---
+function showEnergyInfo(node) {
+    const infoBox = document.getElementById('diagram-info-box');
+    const data = {
+        sun: "☀️ <strong>Sol:</strong> Fonte primária inesgotável. Emite radiação eletromagnética baseada em fusão nuclear.",
+        pv: "⚡ <strong>Painel PV:</strong> Converte luz solar em corrente contínua (CC) através do efeito fotovoltaico de semicondutores.",
+        pump: "⚙️ <strong>Bomba de Calor:</strong> Utiliza o ciclo termodinâmico de refrigeração reversa para transferir calor do ambiente para a água com alta eficiência (COP > 1).",
+        pool: "🏊 <strong>Piscina Aquecida:</strong> Mantém temperatura ideal (~27°C) com menor consumo de energia fóssil e máxima sustentabilidade no CEP."
+    };
+    infoBox.innerHTML = data[node] || "Selecione um nó.";
+}
+
+// --- QUIZ DE SUSTENTABILIDADE ---
+function checkQuiz(isTrue) {
+    const feedback = document.getElementById('quiz-feedback');
+    if (isTrue) {
+        feedback.textContent = "🎉 Correto! Painéis fotovoltaicos não consomem água para gerar eletricidade no dia a dia, diferentemente de termelétricas.";
+        feedback.style.color = "#27ae60";
+    } else {
+        feedback.textContent = "❌ Incorreto. Os painéis solares operam sem o consumo de água ou emissão direta de poluentes.";
+        feedback.style.color = "#c0392b";
+    }
+}
