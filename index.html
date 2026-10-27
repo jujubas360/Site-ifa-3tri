@@ -3,287 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luz, Energia e Sustentabilidade | CEP</title>
+    <title>Energia Solar & Sustentabilidade | Turma 2M - CEP</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts: Inter para o estilo Swiss Design -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts para tipografia Crayon/Handwriting -->
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Schoolbell&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- BARRA DE ACESSIBILIDADE -->
-    <header role="banner" class="accessibility-bar">
-        <div class="container accessibility-flex">
+    <!-- BARRA DE ACESSIBILIDADE RÁPIDA -->
+    <header class="accessibility-bar" role="region" aria-label="Barra de Acessibilidade">
+        <div class="container accessibility-container">
             <span>Acessibilidade:</span>
-            <button id="toggle-theme" aria-label="Alternar modo claro e escuro">🌓 Tema</button>
-            <button id="toggle-contrast" aria-label="Alternar alto contraste">👁️ Contraste</button>
-            <button id="toggle-dyslexia" aria-label="Alternar fonte para dislexia">🔤 Fonte Dislexia</button>
-            <button id="increase-font" aria-label="Aumentar tamanho da fonte">A+</button>
-            <button id="decrease-font" aria-label="Diminuir tamanho da fonte">A-</button>
+            <button id="btn-high-contrast" aria-pressed="false">Alto Contraste</button>
+            <button id="btn-dyslexia" aria-pressed="false">Fonte Dislexia</button>
+            <button id="btn-theme" aria-label="Alternar modo claro e escuro">🌙 Modo Escuro</button>
+            <label for="font-size-slider">Tamanho da Fonte:</label>
+            <input type="range" id="font-size-slider" min="14" max="22" value="16" aria-label="Ajustar tamanho da fonte">
         </div>
     </header>
 
-    <!-- NAVEGAÇÃO PRINCIPAL -->
-    <nav class="navbar" role="navigation" aria-label="Menu Principal">
-        <div class="container nav-container">
-            <h1 class="logo">CEP <span>Energia</span></h1>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#mapa" role="menuitem" class="nav-link active">1. Mapa do Site</a></li>
-                <li role="none"><a href="#efeitos" role="menuitem" class="nav-link">2. Efeitos da Luz</a></li>
-                <li role="none"><a href="#piscina" role="menuitem" class="nav-link">3. Aquecimento CEP</a></li>
-                <li role="none"><a href="#sustentabilidade" role="menuitem" class="nav-link">4. Sustentabilidade</a></li>
-                <li role="none"><a href="#fisica" role="menuitem" class="nav-link">5. Física e Tecno</a></li>
-                <li role="none"><a href="#robotica" role="menuitem" class="nav-link">6. Robótica</a></li>
-                <li role="none"><a href="#equipe" role="menuitem" class="nav-link">Equipe</a></li>
-            </ul>
+    <!-- CABEÇALHO DO SITE -->
+    <header class="site-header" role="banner">
+        <div class="container header-content">
+            <div class="logo-area">
+                <span class="crayon-badge">Turma 2M</span>
+                <h1>☀️ Sol, Luz & Ciência 🌊</h1>
+                <p>Projeto Educacional Interativo • Profs. Paulo, Levi & Angelo | CEP</p>
+            </div>
+            <!-- MENU DE NAVEGAÇÃO VERTICAL CONTÍNUO / ÂNCORAS -->
+            <nav class="main-nav" role="navigation" aria-label="Menu Principal">
+                <ul>
+                    <li><a href="#mapa" class="nav-link">🗺️ 1. Mapa do Site</a></li>
+                    <li><a href="#luz-efeitos" class="nav-link">⚡ 2. Luz & Efeitos</a></li>
+                    <li><a href="#piscina" class="nav-link">🏊 3. Aquecimento CEP</a></li>
+                    <li><a href="#sustentabilidade" class="nav-link">🌱 4. Sustentabilidade</a></li>
+                    <li><a href="#fisica" class="nav-link">🔬 5. Física & Tecnociência</a></li>
+                    <li><a href="#robotica" class="nav-link">🤖 6. Robótica & Sensores</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
+    <!-- CONTEÚDO PRINCIPAL (SEÇÕES TEMÁTICAS) -->
     <main id="main-content">
-        
+
         <!-- MENU 1: MAPA DO SITE -->
-        <section id="mapa" class="section active-section">
-            <div class="container">
-                <span class="section-tag">01 / INTRODUÇÃO</span>
-                <h2>Mapa do Site & Visão Geral</h2>
-                <p class="lead">Bem-vindo ao portal educacional interativo do Colégio Estadual do Paraná (CEP). Este projeto investiga a conversão da luz em eletricidade e sua aplicação prática no aquecimento da nossa piscina.</p>
-                
-                <div class="grid-cards">
-                    <div class="card">
-                        <h3>🗺️ 1. Mapa do Site</h3>
-                        <p>Visão geral da estrutura de navegação e objetivos pedagógicos do projeto.</p>
-                    </div>
-                    <div class="card">
-                        <h3>⚡ 2. Efeito Fotoelétrico & Fotovoltaico</h3>
-                        <p>Distinção rigorosa entre a emissão de elétrons e a geração de tensão em semicondutores.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🏊 3. Aquecimento da Piscina</h3>
-                        <p>Estudo de viabilidade integrando painéis fotovoltaicos, bombas de calor e coletores térmicos.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🌱 4. Sustentabilidade</h3>
-                        <p>Análise de impactos ambientales positivos e negativos da energia solar.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🔬 5. Física e Tecnoscience</h3>
-                        <p>Ondas eletromagnéticas, radiação de corpo negro e o efeito fotoelétrico.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🤖 6. Robótica</h3>
-                        <p>Sensores e componentes eletrônicos utilizados na automação do projeto.</p>
-                    </div>
+        <section id="mapa" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">✏️</div>
+            <h2>🗺️ Menu 1 — Mapa do Site e Introdução</h2>
+            <p class="lead">Bem-vindo ao portal interativo da Turma 2M! Aqui exploramos como a luz do Sol se transforma em eletricidade e calor para a nossa escola.</p>
+            
+            <div class="grid-mapa">
+                <div class="map-card" onclick="location.href='#luz-efeitos'">
+                    <h3>⚡ 1. Luz, Efeito Fotoelétrico & Fotovoltaico</h3>
+                    <p>Entenda fótons, a equação de Einstein e o funcionamento interno das células solares com simulador interativo.</p>
+                </div>
+                <div class="map-card" onclick="location.href='#piscina'">
+                    <h3>🏊 2. Aquecimento da Piscina do CEP</h3>
+                    <p>Investigue o caminho da energia solar até a água da nossa piscina usando painéis e bombas de calor.</p>
+                </div>
+                <div class="map-card" onclick="location.href='#sustentabilidade'">
+                    <h3>🌱 3. Sustentabilidade & Ciclo de Vida</h3>
+                    <p>Analise impactos ambientais, pegada de carbono, fabricação e reciclagem de painéis.</p>
+                </div>
+                <div class="map-card" onclick="location.href='#fisica'">
+                    <h3>🔬 4. Física & Tecnociência</h3>
+                    <p>Aprofunde-se em ondas eletromagnéticas, radiação de corpo negro e a revolução quântica.</p>
+                </div>
+                <div class="map-card" onclick="location.href='#robotica'">
+                    <h3>🤖 5. Robótica & Sensores</h3>
+                    <p>Descubra como Arduino, sensores de temperatura e luminosidade monitoram o sistema do CEP.</p>
                 </div>
             </div>
         </section>
 
-        <!-- MENU 2: EFEITOS DA LUZ -->
-        <section id="efeitos" class="section">
-            <div class="container">
-                <span class="section-tag">02 / FÍSICA QUÂNTICA E ESTADOS SÓLIDOS</span>
-                <h2>Efeito Fotoelétrico e Efeito Fotovoltaico</h2>
-                <p class="lead">Nesta seção, diferenciamos com precisão os fenômenos quânticos de interação luz-matéria.</p>
+        <!-- MENU 2: LUZ, EFEITO FOTOELÉTRICO E FOTOVOLTAICO -->
+        <section id="luz-efeitos" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">💡</div>
+            <h2>⚡ Menu 2 — Luz, Efeito Fotoelétrico e Efeito Fotovoltaico</h2>
+            <p>Atenção: <strong>Efeito fotoelétrico</strong> e <strong>efeito fotovoltaico</strong> não são a mesma coisa! Vamos entender as diferenças científicas com rigor e diversão.</p>
+            
+            <!-- A. EFEITO FOTOELÉTRICO -->
+            <div class="sub-section">
+                <h3>A. Efeito Fotoelétrico (O Fenômeno Quântico Externo)</h3>
+                <p>Quando luz de frequência adequada incide sobre uma placa metálica, ocorre a emissão de elétrons. Albert Einstein explicou isso propondo que a luz é formada por pacotes de energia chamados <strong>fótons</strong>.</p>
+                
+                <div class="formula-box">
+                    <h4>Fórmulas Fundamentais:</h4>
+                    <p>1. Energia do Fóton: $$E = h \cdot f$$</p>
+                    <p>2. Equação de Einstein: $$K_{max} = h \cdot f - \phi$$</p>
+                    <p><em>Onde:</em> $h$ = constante de Planck, $f$ = frequência da luz, $\phi$ = função trabalho do metal, $K_{max}$ = energia cinética máxima dos elétrons.</p>
+                </div>
 
-                <!-- Subseção A -->
-                <div class="sub-block">
-                    <h3>A. Efeito Fotoelétrico</h3>
-                    <p>Fótons são pacotes de energia cujas energias dependem diretamente da frequência da luz, descritos pela equação de Planck: $E = hf$.</p>
-                    <p>Quando a luz incide sobre um metal, se a frequência $f$ for menor que a frequência de corte ($f_0$), nenhum elétron é emitido, independentemente do aumento da intensidade luminosa. A energia cinética máxima dos elétrons emitidos ($K_{max}$) é dada pela Equação de Einstein: $$K_{max} = hf - \phi$$, onde $\phi$ é a função trabalho do material.</p>
+                <!-- SIMULADOR INTERATIVO 1: EFEITO FOTOELÉTRICO -->
+                <div class="simulator-container">
+                    <h4>🧪 Simulador Interativo: Efeito Fotoelétrico</h4>
+                    <p>Ajuste a frequência e a intensidade da luz e observe o comportamento dos elétrons na placa metálica.</p>
                     
-                    <!-- Simulador Interativo -->
-                    <div class="simulator-box">
-                        <h4>Simulador Interativo do Efeito Fotoelétrico</h4>
-                        <div class="controls">
-                            <label>Frequência da Luz ($f$): <input type="range" id="freq-slider" min="1" max="10" value="5"> <span id="freq-val">5</span></label>
-                            <label>Intensidade da Luz: <input type="range" id="intens-slider" min="1" max="10" value="5"> <span id="intens-val">5</span></label>
-                        </div>
-                        <div class="sim-screen" id="sim-screen">
-                            <div class="metal-plate">Placa Metálica ($\phi$)</div>
-                            <div id="electron-container"></div>
-                        </div>
-                        <p id="sim-output" class="sim-status">Status: Ajuste os parâmetros para observar a emissão.</p>
+                    <div class="sim-controls">
+                        <label>Material da Placa: 
+                            <select id="metal-select">
+                                <option value="2.0">Potássio (\(\phi = 2.0\) eV)</option>
+                                <option value="4.5">Zinco (\(\phi = 4.5\) eV)</option>
+                                <option value="5.1">Platina (\(\phi = 5.1\) eV)</option>
+                            </select>
+                        </label>
+                        <label>Frequência da Luz ($f$): <span id="freq-val">5.0</span> x \(10^{14}\) Hz
+                            <input type="range" id="freq-slider" min="3.0" max="8.0" step="0.1" value="5.0">
+                        </label>
+                        <label>Intensidade da Luz (Brilho): <span id="intensity-val">50</span>%
+                            <input type="range" id="intensity-slider" min="10" max="100" value="50">
+                        </label>
+                    </div>
+
+                    <div class="sim-viewport" id="photoelectric-canvas-container" aria-label="Simulação visual de elétrons sendo ejetados">
+                        <div class="metal-plate">Placa Metálica</div>
+                        <div id="electron-stream"></div>
+                        <div class="sim-status" id="sim-status-msg">Inicie alterando os controles acima!</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Subseção B -->
-                <div class="sub-block">
-                    <h3>B. Efeito Fotovoltaico</h3>
-                    <p>Ocorre em semicondutores (como o silício). Quando fótons com energia adequada atingem o material, criam pares elétron-lacuna. A estrutura interna (junção p-n) separa essas cargas, gerando tensão e corrente elétrica contínua.</p>
-                    <div class="animation-box">
-                        <div class="solar-cell-anim">
-                            <div class="layer p-layer">Camada P (+)</div>
-                            <div class="depletion-zone">Campo Elétrico Interno</div>
-                            <div class="layer n-layer">Camada N (-)</div>
+            <!-- B. EFEITO FOTOVOLTAICO -->
+            <div class="sub-section">
+                <h3>B. Efeito Fotovoltaico (O Fenômeno Interno em Semicondutores)</h3>
+                <p>Diferente do efeito fotoelétrico (onde o elétron escapa para o vácuo ou gás), o <strong>efeito fotovoltaico</strong> ocorre dentro de um material semicondutor (como o silício dopado). A luz absorvida gera pares <em>elétron-lacuna</em>, e um campo elétrico interno (junção PN) separa essas cargas, criando uma <strong>tensão elétrica</strong> aproveitável em painéis solares.</p>
+                
+                <div class="animation-box">
+                    <h4>☀️ Animação Didática: Célula Solar em Ação</h4>
+                    <div class="solar-cell-animation" role="img" aria-label="Esquema animado de fótons atingindo a camada semicondutora e gerando corrente elétrica">
+                        <div class="sun-ray-anim"></div>
+                        <div class="pn-junction">
+                            <span class="layer-p">Camada P (+)</span>
+                            <div class="electric-field">⚡ Campo Elétrico</div>
+                            <span class="layer-n">Camada N (-)</span>
                         </div>
-                        <p class="caption">Animação esquemática: Célula solar convertendo luz em fluxo de elétrons (corrente).</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Subseção C -->
-                <div class="sub-block">
-                    <h3>C. Comparação entre os Fenômenos</h3>
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                               <th>Característica</th>
-                               <th>Efeito Fotoelétrico</th>
-                               <th>Efeito Fotovoltaico</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Mecanismo Principal</strong></td>
-                                <td>Emissão externa de elétrons para o vácuo ou gás.</td>
-                                <td>Geração de d.d.p. interna (junção semicondutora).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Destino das Cargas</strong></td>
-                                <td>Elétrons livres escapam do material.</td>
-                                <td>Cargas movimentam-se por um circuito externo.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Aplicações Principais</strong></td>
-                                <td>Tubos fotomultiplicadores, sensores ópticos.</td>
-                                <td>Painéis solares fotovoltaicos, geração de energia.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!-- C. COMPARAÇÃO ENTRE OS FENÔMENOS -->
+            <div class="sub-section">
+                <h3>C. Comparação Científica</h3>
+                <table class="comparison-table" aria-label="Tabela comparativa entre efeito fotoelétrico e fotovoltaico">
+                    <thead>
+                        <tr>
+                            <th>Critério</th>
+                            <th>Efeito Fotoelétrico</th>
+                            <th>Efeito Fotovoltaico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Destino do Elétron</strong></td>
+                            <td>Emitido para fora do material (externo).</td>
+                            <td>Movimenta-se internamente para bandas de condução (gerando tensão).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meio Físico</strong></td>
+                            <td>Geralmente metais com alta função trabalho.</td>
+                            <td>Materiais semicondutores (Silício com junção PN).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aplicação Principal</strong></td>
+                            <td>Tubos fotomultiplicadores, sensores ópticos, visão noturna.</td>
+                            <td>Painéis solares fotovoltaicos para geração de eletricidade.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
         <!-- MENU 3: AQUECIMENTO DA PISCINA DO CEP -->
-        <section id="piscina" class="section">
-            <div class="container">
-                <span class="section-tag">03 / APLICAÇÃO PRÁTICA</span>
-                <h2>Aquecimento da Piscina do CEP</h2>
-                <p class="lead">Investigamos a viabilidade energética e o percurso da energia para aquecer a piscina escolar de forma sustentável.</p>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <h3>Alternativa 1: Fotovoltaico + Bomba de Calor</h3>
-                        <p><strong>Percurso:</strong> Luz solar $\rightarrow$ Eletricidade (Painel PV) $\rightarrow$ Bomba de Calor $\rightarrow$ Aquecimento da Água.</p>
-                        <p>A bomba de calor transfere energia térmica do ar ambiente para a água, conseguindo fornecer mais energia térmica do que consome em eletricidade (COP > 1).</p>
-                    </div>
-                    <div class="card">
-                        <h3>Alternativa 2: Coletores Solares Térmicos</h3>
-                        <p><strong>Percurso:</strong> Luz solar $\rightarrow$ Aquecimento direto da água por absorção térmica em coletores planos.</p>
-                        <p>Mais diretos para aquecimento de água, porém sem a flexibilidade de gerar eletricidade para outros usos escolares.</p>
-                    </div>
+        <section id="piscina" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">🏊</div>
+            <h2>🏊 Menu 3 — Aquecimento da Piscina do CEP</h2>
+            <p>Como podemos manter a água da piscina da nossa escola em uma temperatura agradável de forma sustentável? Vamos analisar duas alternativas viáveis com base em hipóteses científicas reais.</p>
+            
+            <div class="grid-solutions">
+                <div class="sol-card">
+                    <h3>Opção A: Painéis Fotovoltaicos + Bomba de Calor</h3>
+                    <p><strong>Percurso:</strong> Luz Solar ➔ Eletricidade (Painel PV) ➔ Bomba de Calor ➔ Aquecimento da Água.</p>
+                    <p><em>Vantagem:</em> A bomba de calor transfere calor do ar ambiente para a água, podendo fornecer mais energia térmica do que consome em eletricidade (Coeficiente de Performance - COP > 1).</p>
                 </div>
+                <div class="sol-card">
+                    <h3>Opção B: Coletores Solares Térmicos</h3>
+                    <p><strong>Percurso:</strong> Luz Solar ➔ Calor Direto na Tubulação da Água.</p>
+                    <p><em>Vantagem:</em> Maior eficiência direta na conversão de radiação solar em calor térmico para volumes grandes de água.</p>
+                </div>
+            </div>
 
-                <!-- Diagrama Interativo -->
-                <div class="diagram-interactive">
-                    <h4>Diagrama de Fluxo Energético Interativo</h4>
-                    <div class="flow-steps">
-                        <button class="flow-btn" data-step="1">1. Sol / Fótons</button>
-                        <span class="arrow">→</span>
-                        <button class="flow-btn" data-step="2">2. Painel / Coletor</button>
-                        <span class="arrow">→</span>
-                        <button class="flow-btn" data-step="3">3. Conversão / Bomba</button>
-                        <span class="arrow">→</span>
-                        <button class="flow-btn" data-step="4">4. Piscina Aquecida</button>
-                    </div>
-                    <div id="flow-description" class="flow-desc">
-                        Clique em uma etapa acima para visualizar os detalhes técnicos e hipóteses de cálculo adotadas.
-                    </div>
+            <!-- DIAGRAMA INTERATIVO DO FLUXO DE ENERGIA -->
+            <div class="interactive-diagram">
+                <h4>📊 Diagrama de Fluxo Energético Interativo</h4>
+                <div class="diagram-flow">
+                    <button class="node-btn" onclick="showEnergyInfo('sun')">☀️ Sol</button>
+                    <span>➔</span>
+                    <button class="node-btn" onclick="showEnergyInfo('pv')">⚡ Painel PV</button>
+                    <span>➔</span>
+                    <button class="node-btn" onclick="showEnergyInfo('pump')">⚙️ Bomba de Calor</button>
+                    <span>➔</span>
+                    <button class="node-btn" onclick="showEnergyInfo('pool')">🏊 Piscina Aquecida</button>
+                </div>
+                <div id="diagram-info-box" class="info-box-styled" aria-live="polite">
+                    Clique em qualquer etapa acima para ver os detalhes científicos e hipóteses de cálculo!
                 </div>
             </div>
         </section>
 
         <!-- MENU 4: SUSTENTABILIDADE -->
-        <section id="sustentabilidade" class="section">
-            <div class="container">
-                <span class="section-tag">04 / CONSCIENTIZAÇÃO AMBIENTAL</span>
-                <h2>Sustentabilidade: Impactos Ambientais</h2>
-                <p class="lead">Análise crítica sobre a adoção e a não adoção de tecnologias solares em instituições de ensino.</p>
-                
-                <div class="grid-2">
-                    <div class="card impact-positive">
-                        <h3>👍 Impactos Positivos (Com Painéis PV)</h3>
-                        <ul>
-                            <li>Redução expressiva na emissão de gases de efeito estufa ($CO_2$).</li>
-                            <li>Diminuição drástica na fatura de energia elétrica da escola.</li>
-                            <li>Uso de fonte limpa, renovável e inesgotável.</li>
-                            <li>Ferramenta pedagógica viva para os estudantes do CEP.</li>
-                        </ul>
-                    </div>
-                    <div class="card impact-negative">
-                        <h3>👎 Impactos Negativos ou Desafios</h3>
-                        <ul>
-                            <li>Custo inicial de instalação e infraestrutura elevado.</li>
-                            <li>Pegada de carbono associada à fabricação e descarte de silício e baterias.</li>
-                            <li>Dependência de condições climáticas (dias nublados ou chuvosos).</li>
-                        </ul>
-                    </div>
+        <section id="sustentabilidade" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">🌱</div>
+            <h2>🌱 Menu 4 — Sustentabilidade & Ciclo de Vida</h2>
+            <p>A energia solar reduz a dependência de combustíveis fósseis, mas sua fabricação envolve impactos. Vamos avaliar o ciclo completo dos equipamentos:</p>
+            
+            <ul class="styled-list">
+                <li><strong>Extração e Fabricação:</strong> Purificação do silício consome energia e gera resíduos químicos, compensados ao longo da operação do painel.</li>
+                <li><strong>Vida Útil:</strong> Painéis modernos duram de 25 a 30 anos com perda mínima de eficiência (cerca de 0.5% ao ano).</li>
+                <li><strong>Reciclagem:</strong> Tecnologias atuais permitem recuperar vidro, silício e metais valiosos (prata/cobre).</li>
+            </ul>
+
+            <!-- QUIZ RÁPIDO DE SUSTENTABILIDADE -->
+            <div class="quiz-container">
+                <h4>🧠 Quiz Relâmpago da Turma 2M</h4>
+                <p id="quiz-question">O painel fotovoltaico gera eletricidade consumindo água durante sua operação diária?</p>
+                <div class="quiz-options">
+                    <button onclick="checkQuiz(false)">Verdadeiro</button>
+                    <button onclick="checkQuiz(true)">Falso</button>
                 </div>
+                <p id="quiz-feedback" class="feedback-msg" aria-live="polite"></p>
             </div>
         </section>
 
         <!-- MENU 5: FÍSICA E TECNOCIÊNCIA -->
-        <section id="fisica" class="section">
-            <div class="container">
-                <span class="section-tag">05 / FUNDAMENTOS TEÓRICOS</span>
-                <h2>Física e Tecnoscience</h2>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>Ondas Eletromagnéticas</h3>
-                        <p>Perturbações elétricas e magnéticas propagando-se no vácuo à velocidade da luz, transportando energia e momento linear.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Radiação de Corpo Negro</h3>
-                        <p>Espectro de emissão térmica de corpos ideais que absorvem toda radiação incidente, fundamental para o entendimento quântico de Planck.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Efeito Fotoelétrico</h3>
-                        <p>A prova definitiva da natureza corpuscular da luz, consagrada com o Prêmio Nobel de Física a Albert Einstein em 1921.</p>
-                    </div>
-                </div>
+        <section id="fisica" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">🔬</div>
+            <h2>🔬 Menu 5 — Física e Tecnociência</h2>
+            <p>Conteúdos avançados para fundamentar nosso projeto:</p>
+            <div class="accordion">
+                <details>
+                    <summary><strong>Ondas Eletromagnéticas e Espectro</strong></summary>
+                    <p>A luz visível é apenas uma faixa estreita do espectro eletromagnético. As células solares aproveitam fótons com energia superior à banda proibida (gap) do material semicondutor.</p>
+                </details>
+                <details>
+                    <summary><strong>Radiação de Corpo Negro e Catástrofe do Ultravioleta</strong></summary>
+                    <p>O Sol emite radiação térmica aproximada de um corpo negro a 5.500 °C. A solução quântica de Max Planck evitou a catástrofe ultravioleta da física clássica ao postular que a energia é emitida em quantos (\(E = hf\)).</p>
+                </details>
             </div>
         </section>
 
         <!-- MENU 6: ROBÓTICA -->
-        <section id="robotica" class="section">
-            <div class="container">
-                <span class="section-tag">06 / AUTOMAÇÃO E HARDWARE</span>
-                <h2>Robótica e Sensores do Projeto</h2>
-                <p class="lead">Componentes utilizados para monitorar a temperatura da água, intensidade solar e acionamento inteligente da bomba.</p>
-                <ul class="robotics-list">
-                    <li><strong>Sensor de Luminosidade (LDR / BH1750):</strong> Mede o fluxo luminoso em tempo real para otimizar o rastreamento solar.</li>
-                    <li><strong>Sensor de Temperatura (DS18B20):</strong> À prova d'água, monitora a temperatura da piscina e do coletor térmico.</li>
-                    <li><strong>Microcontrolador (ESP32 / Arduino):</strong> Processa os dados dos sensores e comanda os relés de acionamento da bomba de calor.</li>
-                    <li><strong>Módulo Relé e Atuadores:</strong> Responsáveis pelo chaveamento elétrico seguro do sistema de bombeamento.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- EQUIPE E RODAPÉ -->
-        <section id="equipe" class="section">
-            <div class="container team-container">
-                <span class="section-tag">CRÉDITOS E PARTICIPANTES</span>
-                <h2>Equipe de Desenvolvimento</h2>
-                <p class="lead">Colégio Estadual do Paraná (CEP) — Turma: <strong>2M</strong></p>
-                
-                <div class="team-grid">
-                    <div class="team-card"><strong>Camilly</strong><span>Nº 03</span></div>
-                    <div class="team-card"><strong>Gloria</strong><span>Nº 09</span></div>
-                    <div class="team-card"><strong>Jiayu</strong><span>Nº 10</span></div>
-                    <div class="team-card"><strong>Julia E.</strong><span>Nº 12</span></div>
+        <section id="robotica" class="section-card crayon-box" tabindex="0">
+            <div class="doodle-deco">🤖</div>
+            <h2>🤖 Menu 6 — Robótica & Monitoramento</h2>
+            <p>Sob a orientação do Prof. Levi, a Turma 2M projetou o sistema de controle com microcontroladores (Arduino/ESP32) e sensores:</p>
+            
+            <div class="grid-sensors">
+                <div class="sensor-card">
+                    <h4>🌡️ Sensor DS18B20 (Temperatura)</h4>
+                    <p>Mede a temperatura da água da piscina em tempo real com alta precisão à prova d'água.</p>
                 </div>
-
-                <div class="teachers-info">
-                    <h3>Professores Orientadores</h3>
-                    <p><strong>Paulo:</strong> Física e Tecnoscience</p>
-                    <p><strong>Levi:</strong> Robótica</p>
-                    <p><strong>Angelo:</strong> Programação</p>
+                <div class="sensor-card">
+                    <h4>☀️ Sensor LDR (Luminosidade)</h4>
+                    <p>Monitora a intensidade da luz solar incidente para otimizar o momento de acionamento do sistema.</p>
+                </div>
+                <div class="sensor-card">
+                    <h4>🔌 Relé 5V</h4>
+                    <p>Atua como chave eletrônica controlada pelo microcontrolador para ligar/desligar a bomba de circulação.</p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="footer">
+    <!-- RODAPÉ -->
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
-            <p>&copy; 2026 Colégio Estadual do Paraná (CEP) — Projeto Educacional Interativo.</p>
+            <p>CEP • Ensino Médio • Turma 2M | Professores: Paulo, Levi e Angelo</p>
+            <p>Desenvolvido com rigor científico e estilo Crayon 🎨</p>
         </div>
     </footer>
 
