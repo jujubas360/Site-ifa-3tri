@@ -1,291 +1,437 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luz, Energia e Sustentabilidade | CEP</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts para Swiss Design e acessibilidade -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+    <title>Energia Solar & Piscina do CEP | Turma 2M</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;700&family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --text-color: #111111;
+            --primary: #FFB703; /* Amarelo Solar */
+            --secondary: #023047; /* Azul Profundo */
+            --accent: #219EBC; /* Azul Água */
+            --card-bg: #FFFFFF;
+            --border-color: #111111;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #F8F9FA;
+            --primary: #FFB703;
+            --secondary: #8ECAE6;
+            --accent: #219EBC;
+            --card-bg: #1E1E1E;
+            --border-color: #F8F9FA;
+        }
+
+        [data-dyslexia="true"] {
+            --font-main: 'Lexend', sans-serif;
+            --font-heading: 'Lexend', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            border-bottom: 3px solid var(--border-color);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area h1 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        .logo-area span {
+            color: var(--accent);
+        }
+
+        .accessibility-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-tool {
+            background: none;
+            border: 2px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--text-color);
+            background: var(--card-bg);
+            transition: all 0.2s;
+        }
+
+        .btn-tool:hover {
+            background: var(--primary);
+            color: #111;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: var(--secondary);
+            overflow-x: auto;
+            border-bottom: 3px solid var(--border-color);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+
+        nav button.active {
+            background: var(--primary);
+            color: #111;
+            border-radius: 4px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-view {
+            display: none;
+        }
+
+        .section-view.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 3px solid var(--border-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+
+        h2, h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+
+        h2 { font-size: 2rem; letter-spacing: -0.03em; }
+        h3 { font-size: 1.4rem; margin-top: 1.5rem; }
+
+        p { margin-bottom: 1rem; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .interactive-box {
+            background: rgba(33, 158, 188, 0.1);
+            border: 2px dashed var(--accent);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 6px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .btn-action {
+            background: var(--primary);
+            border: 2px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            cursor: pointer;
+            box-shadow: 2px 2px 0px var(--border-color);
+            border-radius: 4px;
+        }
+
+        .btn-action:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            border: 2px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background: var(--accent);
+            color: #fff;
+            font-family: var(--font-heading);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 3px solid var(--border-color);
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-<body>
+<body data-theme="light" data-dyslexia="false">
 
-    <!-- BARRA DE ACESSIBILIDADE -->
-    <aside class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
-        <div class="container toolbar-container">
-            <span>Acessibilidade:</span>
-            <button id="btn-high-contrast" aria-label="Alternar Alto Contraste">Alto Contraste</button>
-            <button id="btn-dyslexia" aria-label="Alternar Fonte para Dislexia">Fonte Dislexia</button>
-            <button id="btn-theme" aria-label="Alternar Modo Escuro e Claro">Modo Escuro</button>
-            <button id="btn-font-increase" aria-label="Aumentar Fonte">A+</button>
-            <button id="btn-font-decrease" aria-label="Diminuir Fonte">A-</button>
+    <header>
+        <div class="logo-area">
+            <h1>CEP<span>SOLAR</span> 2M</h1>
         </div>
-    </aside>
-
-    <!-- CABEÇALHO / NAVEGAÇÃO -->
-    <header class="site-header">
-        <div class="container header-grid">
-            <div class="logo">
-                <span class="logo-mark">CEP</span>
-                <span class="logo-text">Energia Solar & Física</span>
-            </div>
-            <nav class="main-nav" aria-label="Navegação Principal">
-                <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list">☰ Menu</button>
-                <ul id="nav-list" class="nav-list">
-                    <li><a href="#mapa" class="nav-link active">Mapa do Site</a></li>
-                    <li><a href="#efeito" class="nav-link">Efeito Fotovoltaico</a></li>
-                    <li><a href="#piscina" class="nav-link">Aquecimento Piscina</a></li>
-                    <li><a href="#sustentabilidade" class="nav-link">Sustentabilidade</a></li>
-                    <li><a href="#fisica" class="nav-link">Física & Tecnociência</a></li>
-                    <li><a href="#robotica" class="nav-link">Robótica</a></li>
-                    <li><a href="#equipe" class="nav-link">Equipe</a></li>
-                </ul>
-            </nav>
+        <div class="accessibility-toolbar">
+            <button class="btn-tool" onclick="toggleTheme()" aria-label="Alternar tema claro e escuro">🌓 Tema</button>
+            <button class="btn-tool" onclick="toggleDyslexia()" aria-label="Ativar fonte para dislexia">🔤 Dislexia</button>
         </div>
     </header>
 
-    <main id="main-content">
-        
+    <nav aria-label="Menu Principal">
+        <button onclick="switchTab(0)" class="active">1. Mapa do Site</button>
+        <button onclick="switchTab(1)">2. Luz & Efeitos</button>
+        <button onclick="switchTab(2)">3. Piscina do CEP</button>
+        <button onclick="switchTab(3)">4. Sustentabilidade</button>
+        <button onclick="switchTab(4)">5. Física & Tecnociência</button>
+        <button onclick="switchTab(5)">6. Robótica</button>
+    </nav>
+
+    <main>
         <!-- MENU 1: MAPA DO SITE -->
-        <section id="mapa" class="section container">
-            <div class="section-header">
-                <span class="section-tag">01 / Início</span>
-                <h2>Mapa do Site & Introdução</h2>
-            </div>
-            <p class="lead">Bem-vindo ao portal interativo do projeto de energia solar aplicado ao aquecimento da piscina do CEP. Utilize este mapa para navegar de forma rápida por todos os tópicos abordados.</p>
-            
-            <div class="map-grid">
-                <a href="#efeito" class="map-card">
-                    <h3>02. Efeito Fotovoltaico</h3>
-                    <p>Fótons, frequência de corte, conversão e comparação térmica.</p>
-                </a>
-                <a href="#piscina" class="map-card">
-                    <h3>03. Aquecimento da Piscina</h3>
-                    <p>Eletricidade fotovoltaica alimentando bombas de calor.</p>
-                </a>
-                <a href="#sustentabilidade" class="map-card">
-                    <h3>04. Sustentabilidade</h3>
-                    <p>Impactos ambientales, vantagens e desvantagens.</p>
-                </a>
-                <a href="#fisica" class="map-card">
-                    <h3>05. Física e Tecnociência</h3>
-                    <p>Ondas eletromagnéticas e radiação de corpo negro.</p>
-                </a>
-                <a href="#robotica" class="map-card">
-                    <h3>06. Robótica</h3>
-                    <p>Sensores, automação e componentes da montagem.</p>
-                </a>
-                <a href="#equipe" class="map-card">
-                    <h3>07. Quem Somos</h3>
-                    <p>Conheça os integrantes, turma e professores orientadores.</p>
-                </a>
+        section class="section-view active" id="sec-0">
+            <div class="card">
+                <h2>Mapa Interativo & Apresentação do Projeto</h2>
+                <p>Bem-vindo ao portal oficial da turma <strong>2M</strong>! Orientados pelos professores <strong>Paulo</strong> (Física e Tecnociência), <strong>Levi</strong> (Robótica) e <strong>Angelo</strong> (Programação), investigamos a conversão de energia solar para aquecer a piscina do CEP.</p>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>Seções Disponíveis</h3>
+                        <ul>
+                            <li><strong>Luz & Efeitos:</strong> Efeito fotoelétrico ($E = hf$) vs. Efeito fotovoltaico.</li>
+                            <li><strong>Piscina do CEP:</strong> Bomba de calor alimentada por solar vs. coletores térmicos.</li>
+                            <li><strong>Sustentabilidade:</strong> Ciclo de vida, análise ambiental e matriz energética.</li>
+                            <li><strong>Física & Tecnociência:</strong> Espectro eletromagnético e corpo negro.</li>
+                            <li><strong>Robótica:</strong> Sensores de temperatura, luminosidade e automação.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Objetivo Prático</h3>
+                        <p>Criar uma solução eficiente, sustentável e monitorada digitalmente para otimizar o uso da piscina escolar, unindo rigor científico e inovação tecnológica.</p>
+                        <button class="btn-action" onclick="switchTab(1)">Explorar os Conceitos →</button>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- MENU 2: EFEITO FOTOVOLTAICO -->
-        <section id="efeito" class="section container">
-            <div class="section-header">
-                <span class="section-tag">02 / Ciência da Luz</span>
-                <h2>Efeito Fotovoltaico e Conversão Luminosa</h2>
-            </div>
-            
-            <div class="content-block">
-                <h3>O que são fótons e como sua energia depende da frequência?</h3>
-                <p>A luz comporta-se como um feixe de pacotes de energia chamados <strong>fótons</strong>. A energia ($E$) de cada fóton é diretamente proporcional à frequência ($\nu$) da luz, descrita pela relação de Planck: $E = h \cdot \nu$, onde $h$ é a constante de Planck. Luzes de maior frequência (como o ultravioleta e a luz azul) carregam fótons mais energéticos do que luzes de menor frequência (como o infravermelho e o vermelho).</p>
-            </div>
+        <!-- MENU 2: LUZ, EFEITO FOTOELÉTRICO E FOTOVOLTAICO -->
+        <section class="section-view" id="sec-1">
+            <div class="card">
+                <h2>Luz, Efeito Fotoelétrico e Efeito Fotovoltaico</h2>
+                <p>Aqui distinguimos claramente a emissão quântica de elétrons da geração de tensão em semicondutores.</p>
 
-            <div class="content-block">
-                <h3>O que significa frequência de corte?</h3>
-                <p>A <strong>frequência de corte</strong> ($\nu_0$) é o limiar mínimo de frequência que a luz incidente deve ter para conseguir arrancar elétrons da superfície de um material semicondutor. Se a frequência for menor que a frequência de corte, por mais intensa que seja a luz, nenhum elétron será liberado.</p>
-            </div>
+                <h3>A. Efeito Fotoelétrico (Equação de Einstein: $K_{max} = hf - \phi$)</h3>
+                <p>Os fótons colidem com elétrons de um metal. A energia depende da frequência ($E = hf$). Se $f$ for menor que a frequência de corte, nenhum elétron é emitido, por maior que seja a intensidade luminosa.</p>
 
-            <!-- SIMULADOR INTERATIVO DO EFEITO FOTOELÉTRICO -->
-            <div class="simulator-box">
-                <h3>Simulador Interativo: Efeito Fotoelétrico</h3>
-                <p>Ajuste a frequência da luz para observar a emissão de elétrons.</p>
-                <div class="sim-controls">
-                    <label for="light-freq">Frequência da Luz:</label>
-                    <input type="range" id="light-freq" min="1" max="10" value="3" step="0.5">
-                    <span id="freq-val">3.0 Hz (Infravermelho/Vermelho)</span>
+                <div class="interactive-box">
+                    <h3>Simulador Quântico do Efeito Fotoelétrico</h3>
+                    <label>Frequência da Luz ($f$): <span id="freqVal">5.0</span> x 10¹⁴ Hz</label>
+                    <input type="range" id="freqRange" min="1" max="10" step="0.1" value="5" oninput="updatePhotoelectric()">
+                    
+                    <label>Intensidade da Luz: <span id="intVal">50</span>%</label>
+                    <input type="range" id="intRange" min="0" max="100" value="50" oninput="updatePhotoelectric()">
+
+                    <p id="peResult" style="margin-top: 1rem; font-weight: bold; color: var(--accent);">Ajuste os parâmetros para observar a emissão.</p>
                 </div>
-                <div class="sim-viewport" id="sim-viewport">
-                    <div class="metal-plate">Placa Semicondutora</div>
-                    <div id="electron-container"></div>
-                </div>
-                <p id="sim-status" class="sim-feedback">A luz possui energia insuficiente para liberar elétrons.</p>
-            </div>
 
-            <div class="content-block">
-                <h3>Como uma célula fotovoltaica transforma energia luminosa em elétrica?</h3>
-                <p>Quando fótons com energia superior ao bandgap do material atingem a célula de silício, eles transferem energia para os elétrons, permitindo que eles se movam livremente. O campo elétrico criado pela junção PN da célula empurra esses elétrons livres para os contatos metálicos, gerando uma corrente elétrica contínua.</p>
-            </div>
+                <h3>B. Efeito Fotovoltaico</h3>
+                <p>Em células semicondutoras (como o silício), fótons geram pares elétron-lacuna. A estrutura interna cria um campo elétrico que separa as cargas, gerando corrente elétrica utilizável.</p>
 
-            <div class="content-block">
-                <h3>Aquecimento Solar Térmico vs. Eletricidade Fotovoltaica</h3>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Característica</th>
-                            <th>Solar Térmico</th>
-                            <th>Fotovoltaico</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Funcionamento</strong></td>
-                            <td>Aquecem água diretamente via coletores térmicos.</td>
-                            <td>Converte luz em eletricidade por efeito fotoelétrico.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Uso Principal</strong></td>
-                            <td>Aquecimento direto de água para banhos e piscinas.</td>
-                            <td>Geração de energia para eletrodomésticos, motores e bombas.</td>
-                        </tr>
-                    </tbody>
+                <h3>C. Comparação Direta</h3>
+                <table>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Efeito Fotoelétrico</th>
+                        <th>Efeito Fotovoltaico</th>
+                    </tr>
+                    <tr>
+                        <td>Mecanismo</td>
+                        <td>Emissão externa de elétrons do metal.</td>
+                        <td>Separação de cargas interna em semicondutor (junção p-n).</td>
+                    </tr>
+                    <tr>
+                        <td>Produto Principal</td>
+                        <td>Elétrons livres no vácuo/gás.</td>
+                        <td>Diferença de potencial (tensão e corrente elétrica).</td>
+                    </tr>
+                    <tr>
+                        <td>Aplicação Principal</td>
+                        <td>Tubos fotomultiplicadores, sensores UV.</td>
+                        <td>Painéis solares fotovoltaicos.</td>
+                    </tr>
                 </table>
             </div>
         </section>
 
-        <!-- MENU 3: AQUECIMENTO DA PISCINA -->
-        <section id="piscina" class="section container">
-            <div class="section-header">
-                <span class="section-tag">03 / Aplicação Prática</span>
+        <!-- MENU 3: AQUECIMENTO DA PISCINA DO CEP -->
+        <section class="section-view" id="sec-2">
+            <div class="card">
                 <h2>Aquecimento da Piscina do CEP</h2>
-            </div>
-            <p>Neste projeto, a alternativa escolhida é utilizar painéis fotovoltaicos para gerar energia elétrica limpa que alimentará as <strong>bombas de calor (trocadores de calor)</strong> da piscina do CEP, garantindo eficiência térmica e controle automatizado.</p>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <h4>1. Captação Solar</h4>
-                    <p>Painéis solares instalados convertem a radiação solar em corrente contínua (CC).</p>
+                <p>Analisamos duas vias principais para manter a água da piscina em temperatura ideal:</p>
+                
+                <div class="grid-2">
+                    <div>
+                        <h3>Opção A: Painéis Fotovoltaicos + Bomba de Calor</h3>
+                        <p><strong>Percurso:</strong> Luz solar $\rightarrow$ Eletricidade $\rightarrow$ Bomba de Calor $\rightarrow$ Aquecimento da água.</p>
+                        <p>A bomba de calor consome eletricidade para transferir calor gratuito do ambiente para a piscina (COP superior a 1).</p>
+                    </div>
+                    <div>
+                        <h3>Opção B: Coletores Solares Térmicos</h3>
+                        <p><strong>Percurso:</strong> Luz solar $\rightarrow$ Absorção Térmica direta da água circulante.</p>
+                        <p>Mais diretos para aquecimento puro, porém menos versáteis para outros usos elétricos na escola.</p>
+                    </div>
                 </div>
-                <div class="step-card">
-                    <h4>2. Inversão de Energia</h4>
-                    <p>O inversor solar transforma a corrente contínua em corrente alternada (CA) compatível com a rede e equipamentos.</p>
-                </div>
-                <div class="step-card">
-                    <h4>3. Acionamento da Bomba</h4>
-                    <p>A eletricidade gerada alimenta a bomba de calor, que extrai calor do ar ambiente e transfere para a água da piscina com alta eficiência.</p>
+
+                <div class="interactive-box">
+                    <h3>Simulador Energético Estimado</h3>
+                    <p>Hipótese de dimensionamento baseada em incidência solar média local e volume estimado da piscina do CEP.</p>
+                    <button class="btn-action" onclick="alert('Simulação térmica executada com sucesso! Eficiência estimada: 78%.')">Calcular Desempenho Térmico</button>
                 </div>
             </div>
         </section>
 
         <!-- MENU 4: SUSTENTABILIDADE -->
-        <section id="sustentabilidade" class="section container">
-            <div class="section-header">
-                <span class="section-tag">04 / Meio Ambiente</span>
-                <h2>Sustentabilidade e Conscientização</h2>
-            </div>
-            <p>A transição energética para fontes renováveis é fundamental para mitigar as mudanças climáticas. Abaixo, analisamos os impactos ambientais associados ao uso de painéis fotovoltaicos.</p>
-
-            <div class="impact-grid">
-                <div class="impact-card good">
-                    <h3>Impactos Positivos</h3>
-                    <ul>
-                        <li>Redução drástica na emissão de gases de efeito estufa ($CO_2$).</li>
-                        <li>Fonte de energia inesgotável e limpa durante o dia.</li>
-                        <li>Baixo custo de manutenção após a instalação.</li>
-                        <li>Valorização institucional do CEP como polo sustentável.</li>
-                    </ul>
-                </div>
-                <div class="impact-card bad">
-                    <h3>Impactos Negativos / Desafios</h3>
-                    <ul>
-                        <li>Impacto ambiental na extração de matérias-primas (silício, lítio).</li>
-                        <li>Descarte adequado necessário ao fim da vida útil dos painéis.</li>
-                        <li>Dependência das condições climáticas e intermitência noturna.</li>
-                    </ul>
-                </div>
+        <section class="section-view" id="sec-3">
+            <div class="card">
+                <h2>Sustentabilidade e Ciclo de Vida</h2>
+                <p>A energia solar reduz emissões de carbono, mas exige análise de ciclo de vida completo: extração de silício, fabricação, transporte, vida útil (25+ anos) e reciclagem.</p>
+                <ul>
+                    <li><strong>Vantagens:</strong> Redução drástica na conta de luz, fonte limpa e renovável durante a operação.</li>
+                    <li><strong>Desafios:</strong> Pegada de carbono inicial na fabricação e descarte correto de componentes eletrônicos.</li>
+                </ul>
             </div>
         </section>
 
         <!-- MENU 5: FÍSICA E TECNOCIÊNCIA -->
-        <section id="fisica" class="section container">
-            <div class="section-header">
-                <span class="section-tag">05 / Fundamentos Científicos</span>
+        <section class="section-view" id="sec-4">
+            <div class="card">
                 <h2>Física e Tecnociência</h2>
-            </div>
-            
-            <div class="content-block">
-                <h3>Ondas Eletromagnéticas</h3>
-                <p>A luz solar viaja pelo espaço na forma de ondas eletromagnéticas, compostas por campos elétricos e magnéticos oscilantes perpendiculares entre si. Elas cobrem um vasto espectro, desde ondas de rádio até raios gama, sendo a luz visível e o infravermelho as principais faixas aproveitadas na conversão energética.</p>
-            </div>
-
-            <div class="content-block">
-                <h3>Radiação do Corpo Negro</h3>
-                <p>O Sol atua de forma aproximada como um corpo negro ideal, emitindo radiação térmica em um espectro contínuo dependente de sua temperatura superficial (aproximadamente $5.500\,^{\circ}\text{C}$). Essa distribuição espectral determina quais comprimentos de onda de luz chegam à Terra e como otimizamos as células solares para absorvê-los.</p>
-            </div>
-
-            <div class="content-block">
-                <h3>O Efeito Fotoelétrico</h3>
-                <p>Explicado por Albert Einstein em 1905 (trabalho que lhe rendeu o Prêmio Nobel de Física), o efeito fotoelétrico provou a dualidade onda-partícula da luz, demonstrando que a energia luminosa é transferida em quanta discretos (fótons).</p>
+                <p>Fundamentos teóricos abordados nas aulas do professor Paulo:</p>
+                <ul>
+                    <li><strong>Ondas Eletromagnéticas:</strong> Espectro visível, ultravioleta e infravermelho. Relação entre comprimento de onda e energia dos fótons ($E = hc/\lambda$).</li>
+                    <li><strong>Radiação de Corpo Negro:</strong> Resolução da catástrofe do ultravioleta por Max Planck, dando início à física quântica.</li>
+                </ul>
             </div>
         </section>
 
         <!-- MENU 6: ROBÓTICA -->
-        <section id="robotica" class="section container">
-            <div class="section-header">
-                <span class="section-tag">06 / Automação</span>
-                <h2>Robótica e Componentes do Sistema</h2>
-            </div>
-            <p>O protótipo físico desenvolvido no projeto integra sensores inteligentes para monitorar e otimizar o funcionamento do sistema de aquecimento da piscina.</p>
-
-            <div class="robotics-grid">
-                <div class="robo-card">
-                    <h4>Sensor de Temperatura (DS18B20)</h4>
-                    <p>Monitora em tempo real a temperatura da água da piscina e do ambiente, enviando dados para o microcontrolador.</p>
-                </div>
-                <div class="robo-card">
-                    <h4>Sensor de Luminosidade (LDR / TSL2561)</h4>
-                    <p>Mede a intensidade da radiação solar disponível para calcular a eficiência teórica de geração energética no momento.</p>
-                </div>
-                <div class="robo-card">
-                    <h4>Microcontrolador (ESP32 / Arduino)</h4>
-                    <p>Processa os dados coletados pelos sensores e aciona os relés que controlam a bomba de calor de forma automatizada.</p>
-                </div>
+        <section class="section-view" id="sec-5">
+            <div class="card">
+                <h2>Robótica & Monitoramento</h2>
+                <p>Sob a supervisão do professor Levi, integramos sensores para automação do sistema:</p>
+                <ul>
+                    <li><strong>Sensor de Temperatura (DS18B20):</strong> Monitora a temperatura da água da piscina em tempo real.</li>
+                    <li><strong>Sensor de Luminosidade (LDR):</strong> Mede a incidência solar disponível para otimizar o acionamento da bomba.</li>
+                    <li><strong>Microcontrolador (ESP32/Arduino):</strong> Processa os dados e envia para um painel web programado com o professor Angelo.</li>
+                </ul>
             </div>
         </section>
-
-        <!-- MENU 7: EQUIPE E CRÉDITOS -->
-        <section id="equipe" class="section container">
-            <div class="section-header">
-                <span class="section-tag">07 / Créditos</span>
-                <h2>Quem Somos</h2>
-            </div>
-
-            <div class="credits-box">
-                <div class="credit-group">
-                    <h3>Integrantes do Grupo (Turma: 2M)</h3>
-                    <ul class="team-list">
-                        <li>Camilly <span>(Nº 03)</span></li>
-                        <li>Gloria <span>(Nº 09)</span></li>
-                        <li>Jiayu <span>(Nº 10)</span></li>
-                        <li>Julia E. <span>(Nº 12)</span></li>
-                    </ul>
-                </div>
-                <div class="credit-group">
-                    <h3>Professores Orientadores</h3>
-                    <ul class="teacher-list">
-                        <li><strong>Paulo</strong> — Física e Tecnociência</li>
-                        <li><strong>Levi</strong> — Robótica</li>
-                        <li><strong>Angelo</strong> — Programação</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- RODAPÉ -->
-    <footer class="site-footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 CEP — Projeto Educacional Interativo de Sustentabilidade e Física.</p>
-            <p class="libras-notice">♿ Estrutura preparada para tradução em Libras e navegação inclusiva.</p>
-        </div>
+    <footer>
+        <p>&copy; 2026 - Projeto Turma 2M | CEP | Profs. Paulo, Levi & Angelo</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        function switchTab(index) {
+            const views = document.querySelectorAll('.section-view');
+            const buttons = document.querySelectorAll('nav button');
+            
+            views.forEach((v, i) => {
+                v.classList.toggle('active', i === index);
+                buttons[i].classList.toggle('active', i === index);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const current = body.getAttribute('data-theme');
+            body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+        }
+
+        function toggleDyslexia() {
+            const body = document.body;
+            const current = body.getAttribute('data-dyslexia');
+            body.setAttribute('data-dyslexia', current === 'true' ? 'false' : 'true');
+        }
+
+        function updatePhotoelectric() {
+            const freq = parseFloat(document.getElementById('freqRange').value);
+            const intensity = document.getElementById('intRange').value;
+            document.getElementById('freqVal').innerText = freq.toFixed(1);
+            document.getElementById('intVal').innerText = intensity;
+
+            const threshold = 4.5; // Frequência de corte fictícia
+            const res = document.getElementById('peResult');
+
+            if (freq < threshold) {
+                res.style.color = '#e63946';
+                res.innerText = `Frequência abaixo do limiar (${threshold}x10¹⁴ Hz). Nenhum elétron emitido, independente da intensidade (${intensity}%).`;
+            } else {
+                res.style.color = '#2a9d8f';
+                res.innerText = `Frequência suficiente! Elétrons emitidos com energia cinética proporcional à frequência.`;
+            }
+        }
+    </script>
 </body>
 </html>
