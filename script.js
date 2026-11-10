@@ -1,95 +1,788 @@
-// --- ACESSIBILIDADE E CONTROLES ---
-const htmlRoot = document.documentElement;
-const btnTheme = document.getElementById('btn-theme');
-const btnHighContrast = document.getElementById('btn-high-contrast');
-const btnDyslexia = document.getElementById('btn-dyslexia');
-const fontSizeSlider = document.getElementById('font-size-slider');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 
-// Modo Escuro / Claro
-btnTheme.addEventListener('click', () => {
-    const currentTheme = htmlRoot.getAttribute('data-theme');
-    if (currentTheme === 'light') {
-        htmlRoot.setAttribute('data-theme', 'dark');
-        btnTheme.textContent = '☀️ Modo Claro';
-    } else {
-        htmlRoot.setAttribute('data-theme', 'light');
-        btnTheme.textContent = '🌙 Modo Escuro';
-    }
-});
-
-// Alto Contraste
-btnHighContrast.addEventListener('click', () => {
-    htmlRoot.classList.toggle('high-contrast');
-    const isPressed = htmlRoot.classList.contains('high-contrast');
-    btnHighContrast.setAttribute('aria-pressed', isPressed);
-});
-
-// Fonte para Dislexia
-btnDyslexia.addEventListener('click', () => {
-    htmlRoot.classList.toggle('dyslexia-font');
-    const isPressed = htmlRoot.classList.contains('dyslexia-font');
-    btnDyslexia.setAttribute('aria-pressed', isPressed);
-});
-
-// Ajuste de Tamanho de Fonte
-fontSizeSlider.addEventListener('input', (e) => {
-    document.body.style.fontSize = e.target.value + 'px';
-});
-
-// --- SIMULADOR DE EFEITO FOTOELÉTRICO ---
-const freqSlider = document.getElementById('freq-slider');
-const intensitySlider = document.getElementById('intensity-slider');
-const freqVal = document.getElementById('freq-val');
-const intensityVal = document.getElementById('intensity-val');
-const metalSelect = document.getElementById('metal-select');
-const simStatusMsg = document.getElementById('sim-status-msg');
-
-function updatePhotoelectricSimulation() {
-    const f = parseFloat(freqSlider.value);
-    const intensity = parseInt(intensitySlider.value);
-    const phi = parseFloat(metalSelect.value);
-
-    freqVal.textContent = f.toFixed(1);
-    intensityVal.textContent = intensity;
-
-    // Constante proporcional simplificada para o ensino médio (h*f vs phi)
-    // Se f for menor que o limiar (exigido por phi), não há emissão.
-    // Limiar simulado: phi 2.0 -> f min 4.0; phi 4.5 -> f min 6.0; phi 5.1 -> f min 7.0
-    const thresholdFreq = phi * 1.25;
-
-    if (f >= thresholdFreq) {
-        simStatusMsg.textContent = `✅ Frequência suficiente! Elétrons emitidos com energia cinética devido ao brilho de ${intensity}%.`;
-        simStatusMsg.style.color = '#2ecc71';
-    } else {
-        simStatusMsg.textContent = `❌ Frequência abaixo do limiar (${thresholdFreq.toFixed(1)}). Aumente a frequência (nem o brilho máximo adianta!).`;
-        simStatusMsg.style.color = '#e74c3c';
-    }
+:root {
+  --ink: #142a35;
+  --muted: #5e7077;
+  --paper: #f5f5f0;
+  --yellow: #f4c542;
+  --blue: #75c9dc;
+  --deep: #102c3a;
+  --green: #c9dfbd;
+  --line: rgba(20,42,53,.18);
+  --scale: 1;
 }
 
-freqSlider.addEventListener('input', updatePhotoelectricSimulation);
-intensitySlider.addEventListener('input', updatePhotoelectricSimulation);
-metalSelect.addEventListener('change', updatePhotoelectricSimulation);
+* { box-sizing: border-box; }
 
-// --- DIAGRAMA INTERATIVO DA PISCINA ---
-function showEnergyInfo(node) {
-    const infoBox = document.getElementById('diagram-info-box');
-    const data = {
-        sun: "☀️ <strong>Sol:</strong> Fonte primária inesgotável. Emite radiação eletromagnética baseada em fusão nuclear.",
-        pv: "⚡ <strong>Painel PV:</strong> Converte luz solar em corrente contínua (CC) através do efeito fotovoltaico de semicondutores.",
-        pump: "⚙️ <strong>Bomba de Calor:</strong> Utiliza o ciclo termodinâmico de refrigeração reversa para transferir calor do ambiente para a água com alta eficiência (COP > 1).",
-        pool: "🏊 <strong>Piscina Aquecida:</strong> Mantém temperatura ideal (~27°C) com menor consumo de energia fóssil e máxima sustentabilidade no CEP."
-    };
-    infoBox.innerHTML = data[node] || "Selecione um nó.";
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  font-size: calc(16px * var(--scale));
 }
 
-// --- QUIZ DE SUSTENTABILIDADE ---
-function checkQuiz(isTrue) {
-    const feedback = document.getElementById('quiz-feedback');
-    if (isTrue) {
-        feedback.textContent = "🎉 Correto! Painéis fotovoltaicos não consomem água para gerar eletricidade no dia a dia, diferentemente de termelétricas.";
-        feedback.style.color = "#27ae60";
-    } else {
-        feedback.textContent = "❌ Incorreto. Os painéis solares operam sem o consumo de água ou emissão direta de poluentes.";
-        feedback.style.color = "#c0392b";
-    }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Comfortaa', sans-serif;
+  line-height: 1.7;
+}
+
+a { color: inherit; }
+button, input { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid #e09c00;
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 12px;
+  background: var(--yellow);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.skip-link:focus { top: 10px; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 4.5%;
+  background: rgba(245,245,240,.97);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+.brand i { color: #1686a0; }
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex: 1;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+nav a[aria-current="location"] {
+  text-decoration: underline;
+  text-decoration-color: #1686a0;
+  text-underline-offset: 5px;
+}
+
+.access-tools { display: flex; gap: 5px; }
+
+.access-tools button,
+.menu-toggle {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  padding: 7px 9px;
+  cursor: pointer;
+}
+
+.access-tools button[aria-pressed="true"] {
+  background: var(--yellow);
+}
+
+.menu-toggle { display: none; }
+
+.hero {
+  min-height: 690px;
+  padding: 90px 7% 24px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 5%;
+  background: var(--paper);
+}
+
+.eyebrow, .number {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  font-weight: 700;
+}
+
+.eyebrow { color: #1686a0; }
+
+.hero h1 {
+  font-size: clamp(3rem,6.4vw,6.4rem);
+  line-height: 1.06;
+  letter-spacing: -.075em;
+  margin: 22px 0;
+}
+
+.hero h1 span { color: #1686a0; }
+
+.hero-lead {
+  max-width: 620px;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button-dark {
+  background: var(--ink);
+  color: white;
+}
+
+.text-link { font-size: .83rem; font-weight: 700; }
+
+.hero-art {
+  height: 430px;
+  max-width: 560px;
+  width: 100%;
+  justify-self: center;
+  position: relative;
+  overflow: hidden;
+  background: #d8eef0;
+  border-radius: 48% 48% 3px 3px;
+}
+
+.sun {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--yellow);
+  top: 45px;
+  left: calc(50% - 110px);
+  box-shadow: 0 0 0 22px rgba(244,197,66,.2),
+              0 0 0 48px rgba(244,197,66,.12);
+}
+
+.ray {
+  position: absolute;
+  width: 3px;
+  height: 70px;
+  background: #e9aa23;
+  top: 8px;
+  left: 50%;
+}
+
+.ray-two {
+  transform: rotate(45deg);
+  left: 78%;
+  top: 60px;
+}
+
+.water {
+  position: absolute;
+  width: 140%;
+  height: 130px;
+  left: -20%;
+  border-radius: 50%;
+  background: #70c6d7;
+  bottom: 50px;
+  transform: rotate(-8deg);
+}
+
+.water-two {
+  bottom: -8px;
+  background: #3da9c2;
+  transform: rotate(7deg);
+}
+
+.water-three {
+  bottom: -75px;
+  background: #187f9c;
+  transform: rotate(-4deg);
+}
+
+.art-label {
+  position: absolute;
+  font-size: .62rem;
+  letter-spacing: .12em;
+  font-weight: 700;
+}
+
+.label-sun { top: 25px; left: 24px; }
+.label-water { bottom: 25px; right: 22px; color: white; }
+
+.hero-bottom {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  font-size: .62rem;
+  letter-spacing: .12em;
+  font-weight: 700;
+}
+
+.section { padding: 100px 7%; }
+
+.section-heading {
+  max-width: 850px;
+  margin-bottom: 48px;
+}
+
+.section-heading h2 {
+  font-size: clamp(2.3rem,4.5vw,4.5rem);
+  letter-spacing: -.07em;
+  line-height: 1.12;
+  margin: 12px 0;
+}
+
+.section-heading > p:last-child { color: var(--muted); }
+
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+
+.map-card {
+  min-height: 230px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  transition: transform .2s;
+}
+
+.map-card:hover { transform: translateY(-5px); }
+.map-card > span { font-size: .65rem; letter-spacing: .12em; font-weight: 700; }
+.map-card b { font-size: 1.55rem; margin-top: 28px; line-height: 1.2; }
+.map-card p { font-size: .84rem; }
+.map-card strong { margin-top: auto; font-size: .78rem; }
+
+.map-yellow { background: var(--yellow); }
+.map-blue { background: #a9dce5; }
+.map-green { background: #d6e5c9; }
+.map-white { background: white; }
+.map-dark { background: var(--deep); color: white; }
+
+.dark-section {
+  background: var(--deep);
+  color: #f4f5ef;
+}
+
+.dark-section .section-heading > p:last-child,
+.dark-section .concept-block p,
+.dark-section .content-grid p {
+  color: #c2d2d6;
+}
+
+.dark-section .eyebrow { color: var(--yellow); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  align-items: start;
+}
+
+.concept-block { padding: 10px 0 25px; }
+
+.concept-block h3,
+.content-grid h3,
+.pool-explain h3 {
+  font-size: 1.8rem;
+  margin: 12px 0;
+}
+
+.formula {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 15px 20px;
+  background: rgba(244,197,66,.14);
+  border-left: 4px solid var(--yellow);
+  margin: 22px 0;
+  display: inline-block;
+}
+
+.formula-small { font-size: 1.5rem; }
+
+.simulator {
+  background: white;
+  color: var(--ink);
+  padding: 28px;
+  border-radius: 4px;
+}
+
+.sim-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.simulator h3 { font-size: 1.55rem; margin: 8px 0 20px; }
+.live-dot { font-size: .58rem; color: #187e69; font-weight: 700; }
+.simulator label { display: block; font-size: .8rem; font-weight: 700; margin: 12px 0; }
+.simulator input[type="range"] { width: 100%; accent-color: #1686a0; }
+
+.spectrum {
+  height: 24px;
+  background: linear-gradient(90deg,#6b2c91,#3d66be,#27a8b5,#55ad69,#e3d54c,#e69a38,#d94b36);
+  margin: 22px 0;
+  position: relative;
+}
+
+.spectrum div {
+  position: absolute;
+  top: -7px;
+  bottom: -7px;
+  width: 4px;
+  background: #111;
+  left: 50%;
+  box-shadow: 0 0 0 3px white;
+}
+
+.sim-readout, .result-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sim-readout > div, .result-panel > div {
+  padding: 14px;
+  background: #eef5f4;
+}
+
+.sim-readout small, .result-panel small {
+  display: block;
+  font-size: .65rem;
+  color: #52666d;
+}
+
+.sim-readout strong, .result-panel strong {
+  font-size: 1.1rem;
+  display: block;
+  margin-top: 5px;
+}
+
+.small-note { font-size: .72rem; color: #65777c; }
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  margin: 75px 0;
+}
+
+.content-grid article {
+  border-top: 1px solid rgba(255,255,255,.25);
+  padding-top: 22px;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 25px;
+  padding: 35px;
+  background: #193c4c;
+  margin-top: 55px;
+}
+
+.comparison h3 { font-size: 1.7rem; line-height: 1.2; }
+.comparison p { font-size: .85rem; color: #c2d2d6; }
+.compare-item { display: flex; gap: 16px; align-items: flex-start; }
+.compare-item h4 { margin: 0; }
+
+.compare-icon {
+  width: 55px;
+  height: 55px;
+  flex: 0 0 55px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 2rem;
+}
+
+.thermal-icon { background: var(--yellow); color: #26343a; }
+.pv-icon { background: #a9dce5; color: #153746; }
+.tag { font-size: .67rem; background: rgba(255,255,255,.12); padding: 5px 8px; display: inline-block; margin-top: 6px; }
+
+.science-note {
+  padding: 20px 24px;
+  margin-top: 28px;
+  background: #fff3c8;
+  color: #3a3526;
+  border-left: 4px solid #d9a81f;
+  font-size: .84rem;
+}
+
+.system-flow {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 45px 0 70px;
+}
+
+.system-flow > i {
+  align-self: center;
+  color: #1686a0;
+  font-size: 1.5rem;
+  font-style: normal;
+}
+
+.flow-step {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 10px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flow-step span { font-size: 2.2rem; color: #1686a0; }
+.flow-step b { font-size: .8rem; }
+.flow-step small { font-size: .65rem; color: var(--muted); }
+.flow-water { background: #d8eff1; }
+.pool-explain { margin-bottom: 55px; }
+.clean-list { padding-left: 20px; }
+.clean-list li { padding: 5px 0; }
+.pool-sim { border: 1px solid var(--line); }
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.calc-grid input:not([type="range"]) {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: inherit;
+}
+
+.result-panel { margin-top: 20px; }
+.result-panel > div { background: #e7f2f1; padding: 18px; }
+.result-panel strong { font-size: 1.5rem; color: #126c80; }
+
+.sustainability-section { background: #eaf0e7; }
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.impact-card { padding: 30px; background: white; }
+.impact-card > span { font-size: 2.5rem; font-weight: 700; }
+.positive > span { color: #39835d; }
+.negative > span { color: #b76a39; }
+.impact-card h3 { font-size: 1.6rem; }
+.impact-card li { padding: 6px 0; font-size: .88rem; }
+
+.question-band {
+  margin-top: 18px;
+  padding: 35px;
+  background: var(--yellow);
+}
+
+.question-band h3 {
+  font-size: clamp(1.6rem,3vw,2.6rem);
+  line-height: 1.2;
+}
+
+.accordion { border-top: 1px solid rgba(255,255,255,.25); }
+
+details {
+  border-bottom: 1px solid rgba(255,255,255,.25);
+  padding: 20px 0;
+}
+
+summary {
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+summary:after { content: "+"; color: var(--yellow); font-size: 1.5rem; }
+details[open] summary:after { content: "−"; }
+details > div { max-width: 850px; color: #c2d2d6; padding: 12px 0; }
+
+.robot-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+
+.robot-grid article {
+  padding: 24px;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.component-symbol {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  background: #d8eff1;
+  color: #126c80;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.robot-grid h3 { font-size: 1.1rem; }
+.robot-grid p { font-size: .8rem; color: var(--muted); }
+.robot-demo { margin-top: 35px; border: 1px solid var(--line); }
+
+.control-state {
+  padding: 17px;
+  background: #e5f3e8;
+  margin-top: 18px;
+  font-weight: 700;
+}
+
+.libras-box {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 30px;
+  align-items: center;
+  margin-top: 55px;
+  padding: 30px;
+  background: #e9eff0;
+}
+
+.video-placeholder {
+  aspect-ratio: 16/9;
+  background: #173747;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.video-placeholder span { font-size: 2rem; }
+.video-placeholder small { font-size: .6rem; }
+
+.group-section { background: white; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+}
+
+.team-member {
+  padding: 25px;
+  background: #f1f2ed;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.team-member span { font-size: 2.5rem; color: #1686a0; font-weight: 700; }
+.team-member b { font-size: 1.3rem; }
+
+.teachers {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-top: 35px;
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+}
+
+.teachers div { display: flex; flex-direction: column; gap: 8px; }
+.teachers small { font-size: .65rem; color: var(--muted); }
+
+.closing-mark {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 70px;
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+}
+
+.closing-mark span { font-size: 4rem; color: #e9b52f; }
+
+footer {
+  padding: 22px 7%;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  background: var(--deep);
+  color: white;
+  font-size: .65rem;
+}
+
+footer a { color: var(--yellow); }
+
+/* Modo escuro */
+body.dark-mode {
+  --paper: #101c22;
+  --ink: #edf4f2;
+  --muted: #b4c4c7;
+  --line: rgba(237,244,242,.2);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body.dark-mode .topbar { background: #101c22; }
+body.dark-mode .hero, body.dark-mode .group-section { background: #172a33; }
+body.dark-mode .map-white,
+body.dark-mode .robot-grid article,
+body.dark-mode .impact-card,
+body.dark-mode .simulator { background: #1b3039; color: var(--ink); }
+body.dark-mode .sustainability-section { background: #20332e; }
+body.dark-mode .libras-box { background: #203640; }
+body.dark-mode .team-member { background: #243941; }
+
+/* Alto contraste */
+body.high-contrast {
+  --paper: #000;
+  --ink: #fff;
+  --muted: #fff;
+  --line: #fff;
+  background: #000;
+  color: #fff;
+}
+
+body.high-contrast .topbar,
+body.high-contrast .hero,
+body.high-contrast .group-section,
+body.high-contrast .sustainability-section {
+  background: #000;
+  color: #fff;
+}
+
+body.high-contrast .map-card,
+body.high-contrast .simulator,
+body.high-contrast .impact-card,
+body.high-contrast .robot-grid article {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #ff0;
+}
+
+body.high-contrast a,
+body.high-contrast .eyebrow { color: #ff0; }
+
+body.high-contrast .science-note,
+body.high-contrast .question-band {
+  background: #000;
+  color: #ff0;
+  border: 2px solid #ff0;
+}
+
+/* Fonte alternativa */
+body.dyslexia-font,
+body.dyslexia-font * {
+  font-family: 'Comic Sans MS','Comic Neue',sans-serif !important;
+  letter-spacing: .015em;
+  line-height: 1.8;
+}
+
+/* Tablet e celular */
+@media(max-width:1100px) {
+  .topbar { flex-wrap: wrap; }
+  .topbar nav {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+  .access-tools { margin-left: auto; }
+  .comparison { grid-template-columns: 1fr 1fr; }
+}
+
+@media(max-width:700px) {
+  .topbar { gap: 10px; padding: 10px 4%; }
+  .menu-toggle { display: block; margin-left: auto; }
+  .topbar nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 65vh;
+    overflow: auto;
+  }
+  .topbar nav.open { display: flex; }
+  .topbar nav a { padding: 11px; border-top: 1px solid var(--line); }
+  .access-tools { order: 4; width: 100%; justify-content: flex-end; }
+  .hero { display: block; padding: 65px 6% 20px; }
+  .hero h1 { font-size: 3.3rem; }
+  .hero-art { height: 310px; margin: 40px auto; }
+  .hero-bottom { font-size: .52rem; gap: 10px; }
+  .section { padding: 70px 6%; }
+  .map-grid, .robot-grid { grid-template-columns: 1fr 1fr; }
+  .two-col, .content-grid, .impact-grid { grid-template-columns: 1fr; }
+  .content-grid { margin: 40px 0; }
+  .comparison { grid-template-columns: 1fr; padding: 25px; }
+  .system-flow { display: grid; grid-template-columns: 1fr 1fr; }
+  .system-flow > i { display: none; }
+  .flow-step { min-height: 120px; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .libras-box { grid-template-columns: 1fr; }
+  .video-placeholder { max-width: 300px; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .teachers { grid-template-columns: 1fr; }
+  footer { flex-direction: column; }
+}
+
+@media(max-width:390px) {
+  .map-grid, .robot-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.8rem; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
