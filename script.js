@@ -1,251 +1,326 @@
-(() => {
-  "use strict";
+/* ===================================
+   LUZ QUE MOVE - JAVASCRIPT
+=================================== */
 
-  const $ = id => document.getElementById(id);
-  const body = document.body;
+document.addEventListener("DOMContentLoaded", () => {
 
+  // ==================================
   // MENU PARA CELULAR
-  const menuToggle = $("menuToggle");
-  const nav = $("mainNav");
+  // ==================================
 
-  menuToggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(open));
-  });
+  const menuToggle = document.getElementById("menuToggle");
+  const menuPrincipal = document.getElementById("menuPrincipal");
 
-  nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
+  if (menuToggle && menuPrincipal) {
+    menuToggle.addEventListener("click", () => {
+      const aberto = menuPrincipal.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(aberto));
+      menuToggle.textContent = aberto ? "✕ Fechar" : "☰ Menu";
     });
-  });
 
+    menuPrincipal.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        menuPrincipal.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰ Menu";
+      });
+    });
+  }
+
+  // ==================================
   // ACESSIBILIDADE: TAMANHO DA FONTE
-  let fontScale = 1;
+  // ==================================
 
-  const applyScale = () => {
-    document.documentElement.style.setProperty(
-      "--scale",
-      fontScale
-    );
-  };
+  let tamanhoFonte = 16;
 
-  $("fontUp").addEventListener("click", () => {
-    fontScale = Math.min(
-      1.4,
-      +(fontScale + 0.1).toFixed(1)
-    );
-    applyScale();
-  });
+  const aumentarFonte = document.getElementById("aumentarFonte");
+  const diminuirFonte = document.getElementById("diminuirFonte");
 
-  $("fontDown").addEventListener("click", () => {
-    fontScale = Math.max(
-      0.8,
-      +(fontScale - 0.1).toFixed(1)
-    );
-    applyScale();
-  });
-
-  // ALTO CONTRASTE
-  $("contrastToggle").addEventListener("click", e => {
-    const active = body.classList.toggle("high-contrast");
-
-    e.currentTarget.setAttribute(
-      "aria-pressed",
-      String(active)
-    );
-  });
-
-  // FONTE ALTERNATIVA PARA DISLEXIA
-  $("dyslexiaToggle").addEventListener("click", e => {
-    const active = body.classList.toggle("dyslexia-font");
-
-    e.currentTarget.setAttribute(
-      "aria-pressed",
-      String(active)
-    );
-  });
-
-  // MODO CLARO E ESCURO
-  $("themeToggle").addEventListener("click", e => {
-    const active = body.classList.toggle("dark-mode");
-
-    e.currentTarget.setAttribute(
-      "aria-pressed",
-      String(active)
-    );
-
-    e.currentTarget.textContent = active ? "☀" : "☾";
-  });
-
-  // SIMULADOR DE FÓTONS
-  // Equação: E = h * f
-
-  const h = 6.62607015e-34;
-  const frequency = $("frequency");
-
-  function updatePhoton() {
-    const f = Number(frequency.value) * 1e14;
-    const energy = h * f;
-
-    $("frequencyValue").textContent =
-      `${Number(frequency.value).toFixed(1).replace(".", ",")} × 10¹⁴ Hz`;
-
-    $("photonEnergy").textContent =
-      `${(energy / 1e-19).toFixed(2).replace(".", ",")} × 10⁻¹⁹ J`;
-
-    let band;
-
-    if (f < 4e14) {
-      band = "Infravermelho / vermelho";
-    } else if (f < 7.5e14) {
-      band = "Luz visível";
-    } else {
-      band = "Ultravioleta";
-    }
-
-    $("lightBand").textContent = band;
-
-    $("spectrumBeam").style.left =
-      `${((Number(frequency.value) - 1) / 9) * 100}%`;
-
-    $("frequencyExplain").textContent =
-      `Nesta frequência, cada fóton transporta ${
-        (energy / 1e-19).toFixed(2).replace(".", ",")
-      } × 10⁻¹⁹ J. Aumentar a frequência aumenta a energia por fóton.`;
-  }
-
-  frequency.addEventListener("input", updatePhoton);
-  updatePhoton();
-
-  // SIMULADOR DO AQUECIMENTO DA PISCINA
-  // Consumo = potência x horas
-  // Potência FV = consumo / (sol pico x fator global)
-
-  function updatePool() {
-    const power = Math.max(
-      0,
-      Number($("pumpPower").value) || 0
-    );
-
-    const hours = Math.min(
-      24,
-      Math.max(0, Number($("pumpHours").value) || 0)
-    );
-
-    const sun = Math.max(
-      0.1,
-      Number($("solarHours").value) || 0.1
-    );
-
-    const factor = Math.min(
-      100,
-      Math.max(1, Number($("systemFactor").value) || 1)
-    ) / 100;
-
-    const daily = power * hours;
-    const pv = daily / (sun * factor);
-
-    $("dailyUse").textContent =
-      `${daily.toFixed(1).replace(".", ",")} kWh`;
-
-    $("pvSize").textContent =
-      `${pv.toFixed(2).replace(".", ",")} kWp`;
-
-    $("poolFeedback").textContent =
-      `Estimativa: ${power.toLocaleString("pt-BR")} kW × ${
-        hours.toLocaleString("pt-BR")
-      } h = ${daily.toFixed(1).replace(".", ",")} kWh/dia. ` +
-      `A potência FV aproximada considera ${
-        sun.toLocaleString("pt-BR")
-      } horas de sol pico e fator global de ${
-        (factor * 100).toFixed(0)
-      }%.`;
-  }
-
-  [
-    "pumpPower",
-    "pumpHours",
-    "solarHours",
-    "systemFactor"
-  ].forEach(id => {
-    $(id).addEventListener("input", updatePool);
-  });
-
-  updatePool();
-
-  // SIMULADOR DE AUTOMAÇÃO DA PISCINA
-
-  function updateControl() {
-    const water = Number($("waterTemp").value);
-    const target = Number($("targetTemp").value);
-
-    $("waterTempValue").textContent = `${water} °C`;
-    $("targetTempValue").textContent = `${target} °C`;
-
-    const state = $("controlState");
-
-    if (water < target - 0.5) {
-      state.textContent =
-        "Abaixo da meta: solicitar aquecimento (simulação).";
-
-      state.style.background = "#e5f3e8";
-      state.style.color = "#205d3c";
-
-    } else if (water > target + 0.5) {
-      state.textContent =
-        "Acima da meta: interromper solicitação de aquecimento (simulação).";
-
-      state.style.background = "#fff0d9";
-      state.style.color = "#75470d";
-
-    } else {
-      state.textContent =
-        "Na faixa desejada: manter em espera (simulação).";
-
-      state.style.background = "#e7f2f1";
-      state.style.color = "#145b6a";
-    }
-  }
-
-  ["waterTemp", "targetTemp"].forEach(id => {
-    $(id).addEventListener("input", updateControl);
-  });
-
-  updateControl();
-
-  // DESTAQUE AUTOMÁTICO DA SEÇÃO NO MENU
-
-  const sections = [
-    ...document.querySelectorAll("main section[id]")
-  ];
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            nav.querySelectorAll("a").forEach(a => {
-              if (
-                a.getAttribute("href") ===
-                `#${entry.target.id}`
-              ) {
-                a.setAttribute("aria-current", "location");
-              } else {
-                a.removeAttribute("aria-current");
-              }
-            });
-          }
-        });
-      },
-      {
-        rootMargin: "-25% 0px -65% 0px"
-      }
-    );
-
-    sections.forEach(section => {
-      observer.observe(section);
+  if (aumentarFonte) {
+    aumentarFonte.addEventListener("click", () => {
+      tamanhoFonte = Math.min(tamanhoFonte + 2, 24);
+      document.documentElement.style.setProperty(
+        "--fonte-base",
+        tamanhoFonte + "px"
+      );
     });
   }
 
-})();
+  if (diminuirFonte) {
+    diminuirFonte.addEventListener("click", () => {
+      tamanhoFonte = Math.max(tamanhoFonte - 2, 12);
+      document.documentElement.style.setProperty(
+        "--fonte-base",
+        tamanhoFonte + "px"
+      );
+    });
+  }
+
+  // ==================================
+  // ALTO CONTRASTE
+  // ==================================
+
+  const contrasteToggle = document.getElementById("contrasteToggle");
+
+  if (contrasteToggle) {
+    contrasteToggle.addEventListener("click", () => {
+      const ativo = document.body.classList.toggle("high-contrast");
+
+      contrasteToggle.setAttribute("aria-pressed", String(ativo));
+      contrasteToggle.textContent = ativo
+        ? "Desativar contraste"
+        : "Alto contraste";
+    });
+  }
+
+  // ==================================
+  // FONTE ALTERNATIVA
+  // ==================================
+
+  const fonteToggle = document.getElementById("fonteToggle");
+
+  if (fonteToggle) {
+    fonteToggle.addEventListener("click", () => {
+      const ativa = document.body.classList.toggle("alternative-font");
+
+      fonteToggle.setAttribute("aria-pressed", String(ativa));
+      fonteToggle.textContent = ativa
+        ? "Fonte padrão"
+        : "Fonte alternativa";
+    });
+  }
+
+  // ==================================
+  // MODO ESCURO
+  // ==================================
+
+  const themeToggle = document.getElementById("themeToggle");
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const ativo = document.body.classList.toggle("dark-mode");
+
+      themeToggle.setAttribute("aria-pressed", String(ativo));
+      themeToggle.textContent = ativo
+        ? "☀️ Modo claro"
+        : "🌙 Modo escuro";
+    });
+  }
+
+  // ==================================
+  // LABORATÓRIO 1
+  // EFEITO FOTOELÉTRICO
+  // ==================================
+
+  const frequency = document.getElementById("frequency");
+  const frequencyValue = document.getElementById("frequencyValue");
+  const photonEnergy = document.getElementById("photonEnergy");
+  const energyBar = document.getElementById("energyBar");
+  const photoResult = document.getElementById("photoResult");
+
+  // Valor didático aproximado para o material fictício.
+  const workFunction = 2.0;
+
+  function atualizarFotoeletrico() {
+    if (!frequency) return;
+
+    const fTHz = Number(frequency.value);
+
+    // E(eV) = h(eV.s) * f(Hz)
+    const energia = 4.135667696e-15 * fTHz * 1e12;
+
+    if (frequencyValue) {
+      frequencyValue.textContent = fTHz + " THz";
+    }
+
+    if (photonEnergy) {
+      photonEnergy.textContent = energia.toFixed(2) + " eV";
+    }
+
+    if (energyBar) {
+      const percentual = Math.min((energia / 5) * 100, 100);
+      energyBar.style.width = percentual + "%";
+    }
+
+    if (photoResult) {
+      if (energia >= workFunction) {
+        photoResult.textContent =
+          "✓ Neste modelo, a energia do fóton é suficiente para liberar elétrons.";
+      } else {
+        photoResult.textContent =
+          "A energia do fóton ainda não é suficiente para liberar elétrons neste modelo.";
+      }
+    }
+  }
+
+  if (frequency) {
+    frequency.addEventListener("input", atualizarFotoeletrico);
+    atualizarFotoeletrico();
+  }
+
+  // ==================================
+  // LABORATÓRIO 2
+  // ENERGIA FOTOVOLTAICA
+  // ==================================
+
+  const panelPower = document.getElementById("panelPower");
+  const panelQuantity = document.getElementById("panelQuantity");
+  const sunHours = document.getElementById("sunHours");
+  const systemEfficiency = document.getElementById("systemEfficiency");
+
+  const calculateSolar = document.getElementById("calculateSolar");
+
+  const installedPower = document.getElementById("installedPower");
+  const dailyEnergy = document.getElementById("dailyEnergy");
+  const monthlyEnergy = document.getElementById("monthlyEnergy");
+
+  function calcularSolar() {
+    if (
+      !panelPower ||
+      !panelQuantity ||
+      !sunHours ||
+      !systemEfficiency
+    ) return;
+
+    const potencia = Number(panelPower.value);
+    const quantidade = Number(panelQuantity.value);
+    const horas = Number(sunHours.value);
+    const eficiencia = Number(systemEfficiency.value) / 100;
+
+    if (
+      potencia <= 0 ||
+      quantidade <= 0 ||
+      horas <= 0 ||
+      eficiencia <= 0 ||
+      eficiencia > 1
+    ) {
+      alert("Confira os valores informados. Eles precisam ser positivos e a eficiência deve ser de até 100%.");
+      return;
+    }
+
+    const potenciaTotal = potencia * quantidade;
+    const energiaDia = (potenciaTotal * horas * eficiencia) / 1000;
+    const energiaMes = energiaDia * 30;
+
+    if (installedPower) {
+      installedPower.textContent =
+        (potenciaTotal / 1000).toFixed(2) + " kWp";
+    }
+
+    if (dailyEnergy) {
+      dailyEnergy.textContent =
+        energiaDia.toFixed(2) + " kWh";
+    }
+
+    if (monthlyEnergy) {
+      monthlyEnergy.textContent =
+        energiaMes.toFixed(2) + " kWh";
+    }
+  }
+
+  if (calculateSolar) {
+    calculateSolar.addEventListener("click", calcularSolar);
+  }
+
+  // Calcula ao abrir a página.
+  calcularSolar();
+
+  // ==================================
+  // LABORATÓRIO 3
+  // AQUECIMENTO DA PISCINA
+  // ==================================
+
+  const poolVolume = document.getElementById("poolVolume");
+  const waterTemp = document.getElementById("waterTemp");
+  const targetTemp = document.getElementById("targetTemp");
+  const pumpPower = document.getElementById("pumpPower");
+  const cop = document.getElementById("cop");
+
+  const calculatePool = document.getElementById("calculatePool");
+
+  const temperatureDifference =
+    document.getElementById("temperatureDifference");
+
+  const thermalEnergy =
+    document.getElementById("thermalEnergy");
+
+  const heatingTime =
+    document.getElementById("heatingTime");
+
+  const electricalEnergy =
+    document.getElementById("electricalEnergy");
+
+  function calcularPiscina() {
+    if (
+      !poolVolume ||
+      !waterTemp ||
+      !targetTemp ||
+      !pumpPower ||
+      !cop
+    ) return;
+
+    const volume = Number(poolVolume.value);
+    const temperaturaInicial = Number(waterTemp.value);
+    const temperaturaFinal = Number(targetTemp.value);
+    const potenciaBomba = Number(pumpPower.value);
+    const copBomba = Number(cop.value);
+
+    if (
+      volume <= 0 ||
+      potenciaBomba <= 0 ||
+      copBomba < 1 ||
+      temperaturaInicial < 0 ||
+      temperaturaFinal < 0
+    ) {
+      alert("Confira os valores informados.");
+      return;
+    }
+
+    if (temperaturaFinal < temperaturaInicial) {
+      alert("A temperatura desejada precisa ser maior ou igual à temperatura inicial para este simulador de aquecimento.");
+      return;
+    }
+
+    const deltaT = temperaturaFinal - temperaturaInicial;
+
+    // 1 m³ de água ≈ 1000 kg
+    // Calor específico da água ≈ 4,186 kJ/(kg °C)
+    // Conversão para kWh: dividir por 3600.
+    const energiaTermica =
+      (volume * 1000 * 4.186 * deltaT) / 3600;
+
+    const energiaEletrica = energiaTermica / copBomba;
+
+    const tempoFuncionamento =
+      energiaEletrica / potenciaBomba;
+
+    if (temperatureDifference) {
+      temperatureDifference.textContent =
+        deltaT.toFixed(1) + " °C";
+    }
+
+    if (thermalEnergy) {
+      thermalEnergy.textContent =
+        energiaTermica.toFixed(1) + " kWh";
+    }
+
+    if (heatingTime) {
+      heatingTime.textContent =
+        tempoFuncionamento.toFixed(1) + " horas";
+    }
+
+    if (electricalEnergy) {
+      electricalEnergy.textContent =
+        energiaEletrica.toFixed(1) + " kWh";
+    }
+  }
+
+  if (calculatePool) {
+    calculatePool.addEventListener("click", calcularPiscina);
+  }
+
+  // Calcula ao abrir a página.
+  calcularPiscina();
+
+});
