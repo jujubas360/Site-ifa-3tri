@@ -786,3 +786,47 @@ body.dyslexia-font * {
     transition-duration: .01ms !important;
   }
 }
+/* Explicações dos laboratórios */
+.lab-explanation {
+  margin: 24px 0 32px;
+  padding: 24px;
+  background: #eef7f5;
+  border-left: 5px solid #168b83;
+  border-radius: 12px;
+  color: #173b3a;
+  line-height: 1.7;
+}
+
+.lab-explanation h3 {
+  color: #08766f;
+  margin-top: 0;
+}
+
+.lab-explanation h4 {
+  margin-bottom: 8px;
+}
+
+.lab-explanation ol {
+  padding-left: 24px;
+}
+
+.lab-challenge {
+  padding: 14px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #c9e2dc;
+}
+
+body.dark-mode .lab-explanation {
+  background: #183432;
+  color: #e5f5f1;
+}
+
+body.dark-mode .lab-explanation h3 {
+  color: #79d8c5;
+}
+
+body.dark-mode .lab-challenge {
+  background: #234541;
+  border-color: #3b6e66;
+}
