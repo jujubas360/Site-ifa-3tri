@@ -2,352 +2,614 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Projeto educacional sobre energia solar e aquecimento da piscina do CEP.">
-  <title>SOL & ÁGUA — Ciência que transforma energia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projeto educacional Luz que Move: efeito fotoelétrico, energia fotovoltaica e aquecimento da piscina do CEP.">
+  <title>Luz que Move | Projeto CEP</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
-<a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
 
-<header class="topbar">
-  <a class="brand" href="#inicio"><span class="brand-mark">☼</span>SOL <i>&</i> ÁGUA</a>
-  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">☰ Menu</button>
-  <nav id="mainNav" aria-label="Navegação principal">
-    <a href="#mapa">Mapa</a>
+<body>
+
+<header class="cabecalho">
+  <a href="#inicio" class="logo" aria-label="Luz que Move - início">
+    <span class="logo-sol">☀</span>
+    <span>LUZ QUE MOVE</span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle"
+    aria-expanded="false" aria-controls="menuPrincipal">
+    ☰ Menu
+  </button>
+
+  <nav id="menuPrincipal" class="menu">
+    <a href="#inicio">Início</a>
+    <a href="#mapa">Mapa do site</a>
     <a href="#fotoeletrico">Efeito fotoelétrico</a>
-    <a href="#piscina">Piscina</a>
+    <a href="#fotovoltaica">Energia fotovoltaica</a>
+    <a href="#piscina">Piscina do CEP</a>
     <a href="#sustentabilidade">Sustentabilidade</a>
     <a href="#fisica">Física</a>
     <a href="#robotica">Robótica</a>
-    <a href="#grupo">Grupo</a>
+    <a href="#grupo">Nosso grupo</a>
   </nav>
-  <div class="access-tools" aria-label="Ferramentas de acessibilidade">
-    <button id="fontDown" aria-label="Diminuir fonte">A−</button>
-    <button id="fontUp" aria-label="Aumentar fonte">A+</button>
-    <button id="contrastToggle" aria-label="Alto contraste" aria-pressed="false">◐</button>
-    <button id="dyslexiaToggle" aria-label="Fonte para dislexia" aria-pressed="false">Aa</button>
-    <button id="themeToggle" aria-label="Alternar tema" aria-pressed="false">☾</button>
-  </div>
 </header>
 
-<main id="conteudo">
-<section class="hero" id="inicio">
-  <div class="hero-copy">
-    <p class="eyebrow">PROJETO INTERDISCIPLINAR · CEP · 2M</p>
-    <h1>A luz chega.<br><span>A energia se transforma.</span></h1>
-    <p class="hero-lead">Da física dos fótons à água aquecida: investigamos como a luz do Sol pode se transformar em eletricidade para tornar o aquecimento da piscina mais eficiente e sustentável.</p>
-    <div class="hero-actions">
-      <a class="button button-dark" href="#mapa">Explorar o projeto ↘</a>
-      <a class="text-link" href="#piscina">Entender a solução para a piscina</a>
-    </div>
+<div class="acessibilidade" aria-label="Controles de acessibilidade">
+  <button id="aumentarFonte" aria-label="Aumentar tamanho da fonte">A+</button>
+  <button id="diminuirFonte" aria-label="Diminuir tamanho da fonte">A-</button>
+  <button id="contrasteToggle" aria-pressed="false">Alto contraste</button>
+  <button id="fonteToggle" aria-pressed="false">Fonte alternativa</button>
+  <button id="themeToggle" aria-pressed="false">🌙 Modo escuro</button>
+</div>
+
+<main>
+
+<!-- INÍCIO -->
+<section id="inicio" class="hero">
+  <div class="hero-conteudo">
+    <span class="etiqueta">Projeto educacional • CEP</span>
+    <h1>Luz que Move</h1>
+    <h2>Da luz do Sol à água aquecida</h2>
+    <p>
+      Como a luz pode se transformar em eletricidade?
+      E como essa eletricidade pode contribuir para aquecer
+      a piscina do nosso colégio?
+    </p>
+    <a class="botao" href="#fotoeletrico">Começar a explorar</a>
   </div>
-  <div class="hero-art" role="img" aria-label="Sol amarelo sobre ondas azuis">
-    <div class="sun"></div><div class="ray ray-one"></div><div class="ray ray-two"></div>
-    <div class="water water-one"></div><div class="water water-two"></div><div class="water water-three"></div>
-    <span class="art-label label-sun">LUZ SOLAR</span>
-    <span class="art-label label-water">ENERGIA EM MOVIMENTO</span>
-  </div>
-  <div class="hero-bottom">
-    <span>01 / INVESTIGAR</span>
-    <span>FÍSICA + TECNOLOGIA + SUSTENTABILIDADE</span>
-    <span>2026</span>
+
+  <div class="hero-ilustracao" aria-hidden="true">
+    <div class="sol">☀</div>
+    <div class="raios">✦</div>
+    <div class="painel">▦ ▦ ▦<br>▦ ▦ ▦</div>
+    <div class="agua">〰 〰 〰</div>
   </div>
 </section>
 
-<section class="section" id="mapa">
-  <div class="section-heading">
-    <p class="eyebrow">01 — ORIENTAÇÃO</p>
-    <h2>Mapa do site</h2>
-    <p>Escolha um caminho. Cada capítulo conecta um conceito científico a uma aplicação real.</p>
-  </div>
-  <div class="map-grid">
-    <a class="map-card map-yellow" href="#fotoeletrico">
-      <span>02 / FÍSICA DA LUZ</span><b>Efeito fotoelétrico</b>
-      <p>Fótons, frequência, corte e conversão fotovoltaica.</p><strong>Explorar ↗</strong>
+<!-- MAPA -->
+<section id="mapa" class="secao">
+  <span class="etiqueta">Navegação</span>
+  <h2>Mapa do site</h2>
+  <p>Explore os conteúdos e descubra como a ciência pode transformar a energia solar em soluções reais.</p>
+
+  <div class="grade cards">
+    <a class="card link-card" href="#fotoeletrico">
+      <span class="icone">⚛️</span>
+      <h3>Efeito fotoelétrico</h3>
+      <p>Entenda como a luz transfere energia aos elétrons.</p>
     </a>
-    <a class="map-card map-blue" href="#piscina">
-      <span>03 / APLICAÇÃO</span><b>Aquecimento da piscina</b>
-      <p>Como painéis solares podem alimentar uma bomba de calor.</p><strong>Explorar ↗</strong>
+
+    <a class="card link-card" href="#fotovoltaica">
+      <span class="icone">☀️</span>
+      <h3>Energia fotovoltaica</h3>
+      <p>Descubra como a luz pode gerar eletricidade.</p>
     </a>
-    <a class="map-card map-green" href="#sustentabilidade">
-      <span>04 / PLANETA</span><b>Sustentabilidade</b>
-      <p>Benefícios, limites e impactos ambientais.</p><strong>Explorar ↗</strong>
+
+    <a class="card link-card" href="#piscina">
+      <span class="icone">🌊</span>
+      <h3>Aquecimento da piscina</h3>
+      <p>Conheça a aplicação da energia solar no CEP.</p>
     </a>
-    <a class="map-card map-white" href="#fisica">
-      <span>05 / FUNDAMENTOS</span><b>Física e tecnociência</b>
-      <p>Ondas eletromagnéticas, corpo negro e efeito fotoelétrico.</p><strong>Explorar ↗</strong>
+
+    <a class="card link-card" href="#sustentabilidade">
+      <span class="icone">🌱</span>
+      <h3>Sustentabilidade</h3>
+      <p>Reflita sobre os impactos ambientais.</p>
     </a>
-    <a class="map-card map-white" href="#robotica">
-      <span>06 / AUTOMAÇÃO</span><b>Robótica</b>
-      <p>Sensores, atuadores e lógica de controle.</p><strong>Explorar ↗</strong>
+
+    <a class="card link-card" href="#fisica">
+      <span class="icone">📘</span>
+      <h3>Física e ciência</h3>
+      <p>Conheça os conceitos científicos envolvidos.</p>
     </a>
-    <a class="map-card map-dark" href="#grupo">
-      <span>07 / QUEM FEZ</span><b>Nosso grupo</b>
-      <p>Conheça os estudantes e professores do projeto.</p><strong>Explorar ↗</strong>
+
+    <a class="card link-card" href="#robotica">
+      <span class="icone">🤖</span>
+      <h3>Robótica</h3>
+      <p>Explore sensores, automação e controle.</p>
     </a>
   </div>
 </section>
 
-<section class="section dark-section" id="fotoeletrico">
-  <div class="section-heading">
-    <p class="eyebrow">02 — EFEITO FOTOELÉTRICO E CONVERSÃO DA LUZ EM ENERGIA</p>
-    <h2>O que a luz consegue fazer?</h2>
-    <p>A luz transporta energia em pequenos pacotes chamados fótons. A energia de cada fóton depende da frequência da radiação.</p>
-  </div>
+<!-- EFEITO FOTOELÉTRICO -->
+<section id="fotoeletrico" class="secao secao-clara">
+  <span class="etiqueta">Laboratório virtual 01</span>
+  <h2>O efeito fotoelétrico</h2>
 
-  <div class="two-col">
-    <article class="concept-block">
-      <span class="number">A / FÓTONS</span>
-      <h3>O que são fótons?</h3>
-      <p>Os fótons (ou fotões) são as partículas elementares que compõem a luz e toda a radiação eletromagnética, como ondas de rádio, micro-ondas, infravermelho, ultravioleta, raios X e raios gama.</p>
+  <p>
+Os fótons (ou fotões) são as partículas elementares que compõem a luz e toda a radiação eletromagnética, como ondas de rádio, micro-ondas, infravermelho, ultravioleta, raios X e raios gama.
+  </p>
+
+  <div class="duas-colunas">
+    <div class="card">
+      <h3>O que é um fóton?</h3>
+      <p>
+        O fóton é uma partícula associada à luz. Cada fóton transporta
+        uma quantidade de energia que depende da frequência da radiação.
+      </p>
       <div class="formula">E = h · f</div>
-      <p><b>E</b> é a energia do fóton; <b>h</b> é a constante de Planck (6,626 × 10⁻³⁴ J·s); <b>f</b> é a frequência.</p>
-      <p>Quanto maior a frequência, maior a energia de cada fóton. A intensidade luminosa está relacionada principalmente à quantidade de fótons que chega por intervalo de tempo.</p>
-    </article>
-
-    <article class="simulator">
-      <div class="sim-head">
-        <span class="number">LABORATÓRIO INTERATIVO 01</span>
-        <span class="live-dot">SIMULADOR</span>
-      </div>
-      <h3>Altere a frequência da luz</h3>
-      <label for="frequency">Frequência: <output id="frequencyValue">5,0 × 10¹⁴ Hz</output></label>
-      <input id="frequency" type="range" min="1" max="10" step=".1" value="5">
-      <div class="spectrum" aria-hidden="true"><div id="spectrumBeam"></div></div>
-      <div class="sim-readout">
-        <div><small>Energia por fóton</small><strong id="photonEnergy">3,31 × 10⁻¹⁹ J</strong></div>
-        <div><small>Faixa aproximada</small><strong id="lightBand">Luz visível</strong></div>
-      </div>
-      <p class="small-note" id="frequencyExplain" aria-live="polite">Ao aumentar a frequência, aumenta a energia de cada fóton.</p>
-    </article>
-  </div>
-
-  <div class="content-grid">
-    <article>
-      <span class="number">B / FREQUÊNCIA DE CORTE</span>
-      <h3>Existe um limite?</h3>
-      <p>No efeito fotoelétrico externo, elétrons só são emitidos por um material quando a frequência da luz é igual ou superior à frequência de corte. Abaixo desse limite, aumentar apenas a intensidade não fornece energia suficiente a cada fóton para arrancar elétrons.</p>
-      <div class="formula formula-small">f₀ = Φ / h</div>
-      <p>Φ (função trabalho) é a energia mínima necessária para retirar um elétron do material. O valor de corte depende do material.</p>
-    </article>
-    <article>
-      <span class="number">C / CÉLULA FOTOVOLTAICA</span>
-      <h3>Da luz à eletricidade</h3>
-      <p>Uma célula fotovoltaica é normalmente feita de material semicondutor, como o silício. A luz absorvida pode criar pares elétron-lacuna. O campo elétrico interno da junção p-n separa essas cargas, estabelecendo uma tensão. Com um circuito fechado, há corrente elétrica capaz de alimentar uma carga.</p>
-      <p>Várias células conectadas formam um módulo; vários módulos formam um arranjo fotovoltaico.</p>
-    </article>
-  </div>
-
-  <div class="comparison">
-    <div>
-      <span class="number">COMPARAÇÃO VISUAL</span>
-      <h3>Dois caminhos para aproveitar o Sol</h3>
-      <p>As duas tecnologias usam a energia solar, mas entregam resultados diferentes.</p>
+      <p>
+        E = energia do fóton<br>
+        h = constante de Planck<br>
+        f = frequência da luz
+      </p>
     </div>
-    <div class="compare-item">
-      <div class="compare-icon thermal-icon">☀</div>
-      <div><h4>Solar térmico</h4>
-        <p>O coletor absorve a radiação e transfere calor diretamente para a água por meio de tubulações e trocadores térmicos.</p>
-        <span class="tag">Sol → calor → água</span>
-      </div>
-    </div>
-    <div class="compare-item">
-      <div class="compare-icon pv-icon">ϟ</div>
-      <div><h4>Solar fotovoltaico</h4>
-        <p>O módulo converte parte da energia luminosa em eletricidade. Essa eletricidade pode alimentar equipamentos, inclusive uma bomba de calor.</p>
-        <span class="tag">Sol → eletricidade → equipamento</span>
-      </div>
+
+    <div class="card">
+      <h3>Frequência de corte</h3>
+      <p>
+        Cada material possui uma energia mínima necessária para liberar
+        elétrons. Se a frequência da luz for menor que a frequência
+        de corte, não ocorre emissão no modelo apresentado.
+      </p>
+      <p>
+        Aumentar a intensidade da luz aumenta a quantidade de fótons,
+        mas não a energia individual de cada fóton.
+      </p>
     </div>
   </div>
-  <aside class="science-note">
-    <b>Uma distinção importante:</b> o efeito fotoelétrico externo é a emissão de elétrons para fora de um material. O efeito fotovoltaico ocorre quando a luz gera e separa cargas dentro de um dispositivo, produzindo tensão elétrica. Os painéis fotovoltaicos operam pelo efeito fotovoltaico, relacionado à interação entre luz e elétrons nos semicondutores.
-  </aside>
+
+  <div class="simulador">
+    <h3>Simulador: energia dos fótons</h3>
+    <p>Altere a frequência da luz e observe a energia de cada fóton.</p>
+
+    <label for="frequency">Frequência da luz (em THz)</label>
+    <input type="range" id="frequency" min="100" max="1200" value="600" step="10">
+
+    <p>Frequência escolhida: <strong id="frequencyValue">600 THz</strong></p>
+    <p>Energia do fóton: <strong id="photonEnergy">2,48 eV</strong></p>
+
+    <div class="barra-energia">
+      <div id="energyBar"></div>
+    </div>
+
+    <p id="photoResult" class="resultado" aria-live="polite"></p>
+  </div>
+
+  <!-- LABORATÓRIO 1 -->
+  <div class="laboratorio">
+    <span class="etiqueta">Atividade experimental virtual</span>
+    <h3>🔬 Entenda o laboratório: efeito fotoelétrico</h3>
+
+    <h4>Objetivo</h4>
+    <p>
+      Investigar a relação entre frequência da luz, energia dos fótons
+      e emissão de elétrons em um material.
+    </p>
+
+    <h4>Como funciona o experimento?</h4>
+    <ol>
+      <li>Movimente o controle de frequência do simulador.</li>
+      <li>Observe como a energia dos fótons se modifica.</li>
+      <li>Compare a energia calculada com a energia mínima necessária
+        para liberar elétrons.</li>
+      <li>Observe em que situação o simulador indica emissão.</li>
+    </ol>
+
+    <div class="conceito-lab">
+      <strong>O que está acontecendo?</strong>
+      <p>
+        A energia de cada fóton é dada por E = h · f.
+        Portanto, quanto maior a frequência da luz, maior será
+        a energia transportada por cada fóton.
+      </p>
+      <p>
+        Quando a energia do fóton é suficiente para superar a função
+        trabalho do material, um elétron pode ser liberado.
+      </p>
+    </div>
+
+    <h4>Desafio do laboratório</h4>
+    <p>
+      Aumente a frequência da luz. O que acontece com a energia
+      de cada fóton? E se você aumentar apenas a intensidade da luz?
+    </p>
+
+    <p class="pergunta">
+      <strong>Conclusão esperada:</strong>
+      a frequência determina a energia individual dos fótons.
+      A intensidade está relacionada à quantidade de fótons que chegam
+      ao material.
+    </p>
+  </div>
 </section>
 
-<section class="section" id="piscina">
-  <div class="section-heading">
-    <p class="eyebrow">03 — APLICAÇÃO NO CEP</p>
-    <h2>Como aquecer a piscina?</h2>
-    <p>Uma alternativa é instalar painéis fotovoltaicos para gerar eletricidade e utilizar essa energia para alimentar uma bomba de calor.</p>
-  </div>
+<!-- FOTOVOLTAICA -->
+<section id="fotovoltaica" class="secao">
+  <span class="etiqueta">Laboratório virtual 02</span>
+  <h2>Da luz à energia elétrica</h2>
 
-  <div class="system-flow" aria-label="Fluxo de energia do Sol até a piscina">
-    <div class="flow-step"><span>☀</span><b>Sol</b><small>Radiação solar</small></div><i>→</i>
-    <div class="flow-step"><span>▦</span><b>Painéis FV</b><small>Geram eletricidade</small></div><i>→</i>
-    <div class="flow-step"><span>ϟ</span><b>Inversor / quadro</b><small>Gerencia a energia</small></div><i>→</i>
-    <div class="flow-step"><span>♨</span><b>Bomba de calor</b><small>Transfere calor</small></div><i>→</i>
-    <div class="flow-step flow-water"><span>≈</span><b>Piscina</b><small>Água aquecida</small></div>
-  </div>
+  <p>
+    O efeito fotovoltaico permite que células solares convertam
+    parte da energia luminosa em energia elétrica.
+  </p>
 
-  <div class="two-col pool-explain">
-    <article>
-      <h3>Como a bomba de calor funciona?</h3>
-      <p>Ela usa energia elétrica para movimentar um ciclo termodinâmico. Um fluido refrigerante absorve calor do ar externo no evaporador, é comprimido, libera calor para a água no condensador e depois tem sua pressão reduzida para reiniciar o ciclo.</p>
-      <p>Por isso, a bomba de calor pode transferir mais energia térmica para a água do que a energia elétrica que consome. Essa relação é descrita pelo COP (coeficiente de desempenho), que varia conforme as condições de operação.</p>
-    </article>
-    <article>
-      <h3>O que seria necessário?</h3>
-      <ol class="clean-list">
-        <li>Levantar volume da piscina, temperatura desejada e perdas térmicas.</li>
-        <li>Medir o consumo e a potência elétrica da bomba de calor.</li>
-        <li>Estimar a energia solar disponível e dimensionar o sistema fotovoltaico.</li>
-        <li>Verificar inversor, proteções, estrutura, conexão elétrica e regras da concessionária.</li>
-        <li>Automatizar horários e monitorar temperatura e consumo.</li>
-      </ol>
-    </article>
-  </div>
-
-  <div class="simulator pool-sim">
-    <div class="sim-head"><span class="number">LABORATÓRIO INTERATIVO 02</span><span class="live-dot">ESTIMATIVA DIDÁTICA</span></div>
-    <h3>Explore o consumo da bomba de calor</h3>
-    <p>Altere os valores para estimar o consumo diário. Os números são ilustrativos e não substituem um dimensionamento técnico.</p>
-    <div class="calc-grid">
-      <div><label for="pumpPower">Potência elétrica (kW)</label><input id="pumpPower" type="number" min=".1" max="100" step=".1" value="5"></div>
-      <div><label for="pumpHours">Horas de uso por dia</label><input id="pumpHours" type="number" min="0" max="24" step=".5" value="6"></div>
-      <div><label for="solarHours">Horas de sol pico equivalentes</label><input id="solarHours" type="number" min=".5" max="12" step=".5" value="5"></div>
-      <div><label for="systemFactor">Fator global do sistema (%)</label><input id="systemFactor" type="number" min="50" max="100" step="1" value="80"></div>
+  <div class="duas-colunas">
+    <div class="card">
+      <h3>Como funciona uma célula solar?</h3>
+      <p>
+        A luz incide sobre o material semicondutor da célula.
+        A energia absorvida pode gerar portadores de carga elétrica.
+        A estrutura interna da célula permite produzir uma diferença
+        de potencial e corrente elétrica.
+      </p>
     </div>
-    <div class="result-panel" aria-live="polite">
-      <div><small>Consumo diário estimado</small><strong id="dailyUse">30 kWh</strong></div>
-      <div><small>Potência FV aproximada</small><strong id="pvSize">7,5 kWp</strong></div>
+
+    <div class="card">
+      <h3>Energia solar térmica x fotovoltaica</h3>
+      <p>
+        O sistema solar térmico utiliza a radiação solar diretamente
+        para aquecer um fluido ou a água.
+      </p>
+      <p>
+        O sistema fotovoltaico transforma luz em eletricidade,
+        que pode alimentar equipamentos, motores e bombas de calor.
+      </p>
     </div>
-    <p class="small-note" id="poolFeedback">Estimativa simplificada: potência FV ≈ consumo diário ÷ (horas de sol pico × fator global).</p>
   </div>
-  <aside class="science-note"><b>Atenção ao projeto real:</b> o dimensionamento depende também da área e profundidade da piscina, temperatura ambiente, cobertura térmica, vento, umidade, uso diário, eficiência do equipamento e perfil de geração. A instalação deve ser projetada e executada por profissionais habilitados, com proteções elétricas e análise das normas aplicáveis.</aside>
+
+  <div class="simulador">
+    <h3>Simulador: geração de energia solar</h3>
+    <p>Modifique os parâmetros para estimar a geração diária.</p>
+
+    <label for="panelPower">Potência de cada painel (W)</label>
+    <input type="number" id="panelPower" value="550" min="50" max="1000">
+
+    <label for="panelQuantity">Quantidade de painéis</label>
+    <input type="number" id="panelQuantity" value="10" min="1" max="500">
+
+    <label for="sunHours">Horas de sol equivalente por dia</label>
+    <input type="number" id="sunHours" value="5" min="1" max="10" step="0.5">
+
+    <label for="systemEfficiency">Eficiência global estimada (%)</label>
+    <input type="number" id="systemEfficiency" value="80" min="1" max="100">
+
+    <button class="botao" id="calculateSolar">Calcular geração</button>
+
+    <div class="resultado-box" aria-live="polite">
+      <p>Potência instalada: <strong id="installedPower">5,50 kWp</strong></p>
+      <p>Energia estimada por dia: <strong id="dailyEnergy">22,00 kWh</strong></p>
+      <p>Energia estimada por mês: <strong id="monthlyEnergy">660,00 kWh</strong></p>
+    </div>
+  </div>
+
+  <!-- LABORATÓRIO 2 -->
+  <div class="laboratorio">
+    <span class="etiqueta">Atividade experimental virtual</span>
+    <h3>🔬 Entenda o laboratório: conversão fotovoltaica</h3>
+
+    <h4>Objetivo</h4>
+    <p>
+      Investigar como a quantidade e a potência dos painéis,
+      junto à disponibilidade de luz solar, influenciam a produção
+      de energia elétrica.
+    </p>
+
+    <h4>Como funciona o experimento?</h4>
+    <ol>
+      <li>Informe a potência de cada painel.</li>
+      <li>Escolha quantos painéis serão instalados.</li>
+      <li>Informe as horas de sol equivalente por dia.</li>
+      <li>Defina uma eficiência global estimada.</li>
+      <li>Clique em calcular e observe os resultados.</li>
+    </ol>
+
+    <div class="conceito-lab">
+      <strong>O que está acontecendo?</strong>
+      <p>
+        A potência instalada é a soma da potência nominal dos painéis.
+        A estimativa de energia diária considera a potência instalada,
+        as horas de sol equivalente e a eficiência global do sistema.
+      </p>
+      <p>
+        A conta é uma aproximação didática. Na prática, a geração
+        varia com clima, orientação, inclinação, temperatura,
+        sombreamento e características dos equipamentos.
+      </p>
+    </div>
+
+    <h4>Desafio do laboratório</h4>
+    <p>
+      Dobre a quantidade de painéis e observe o resultado.
+      Depois, reduza as horas de sol equivalente. Como a produção muda?
+    </p>
+
+    <p class="pergunta">
+      <strong>Conclusão esperada:</strong>
+      maior potência instalada e maior disponibilidade solar tendem
+      a aumentar a energia produzida.
+    </p>
+  </div>
 </section>
 
-<section class="section sustainability-section" id="sustentabilidade">
-  <div class="section-heading">
-    <p class="eyebrow">04 — RESPONSABILIDADE AMBIENTAL</p>
-    <h2>Energia limpa também exige escolhas conscientes.</h2>
-    <p>A tecnologia fotovoltaica pode reduzir impactos, mas não é isenta deles. Sustentabilidade envolve todo o ciclo de vida.</p>
+<!-- PISCINA -->
+<section id="piscina" class="secao secao-clara">
+  <span class="etiqueta">Aplicação prática no CEP • Laboratório virtual 03</span>
+  <h2>Aquecimento da piscina do CEP</h2>
+
+  <p>
+    Uma das aplicações possíveis da energia fotovoltaica é alimentar
+    equipamentos elétricos utilizados no aquecimento da piscina.
+  </p>
+
+  <div class="duas-colunas">
+    <div class="card">
+      <h3>O que é uma bomba de calor?</h3>
+      <p>
+        A bomba de calor utiliza energia elétrica para transferir
+        energia térmica de uma fonte mais fria para a água da piscina.
+        Ela não funciona simplesmente como uma resistência elétrica:
+        transfere calor e pode fornecer mais energia térmica do que
+        a energia elétrica que consome.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Como a energia solar participa?</h3>
+      <p>
+        Os painéis fotovoltaicos produzem eletricidade.
+        Essa eletricidade pode alimentar a bomba de calor,
+        reduzindo a quantidade de energia que precisa ser comprada
+        da rede elétrica, conforme a geração e o consumo.
+      </p>
+    </div>
   </div>
-  <div class="impact-grid">
-    <article class="impact-card positive">
-      <span>＋</span><h3>Possíveis benefícios</h3>
+
+  <div class="simulador">
+    <h3>Simulador: aquecimento da piscina</h3>
+    <p>Explore a quantidade de energia térmica necessária para aquecer a água.</p>
+
+    <label for="poolVolume">Volume da piscina (m³)</label>
+    <input type="number" id="poolVolume" value="50" min="1" max="1000">
+
+    <label for="waterTemp">Temperatura inicial da água (°C)</label>
+    <input type="number" id="waterTemp" value="22" min="5" max="40">
+
+    <label for="targetTemp">Temperatura desejada (°C)</label>
+    <input type="number" id="targetTemp" value="28" min="5" max="40">
+
+    <label for="pumpPower">Potência elétrica da bomba de calor (kW)</label>
+    <input type="number" id="pumpPower" value="5" min="0.5" max="100" step="0.5">
+
+    <label for="cop">COP estimado da bomba de calor</label>
+    <input type="number" id="cop" value="4" min="1" max="8" step="0.5">
+
+    <button class="botao" id="calculatePool">Calcular aquecimento</button>
+
+    <div class="resultado-box" aria-live="polite">
+      <p>Diferença de temperatura: <strong id="temperatureDifference">6 °C</strong></p>
+      <p>Energia térmica aproximada: <strong id="thermalEnergy">348,9 kWh</strong></p>
+      <p>Tempo teórico de funcionamento: <strong id="heatingTime">17,4 horas</strong></p>
+      <p>Consumo elétrico estimado: <strong id="electricalEnergy">87,2 kWh</strong></p>
+    </div>
+
+    <p class="nota">
+      Estimativa didática. Não considera perdas de calor, evaporação,
+      cobertura da piscina, variação climática ou limites reais
+      do equipamento.
+    </p>
+  </div>
+
+  <!-- LABORATÓRIO 3 -->
+  <div class="laboratorio">
+    <span class="etiqueta">Atividade experimental virtual</span>
+    <h3>🔬 Entenda o laboratório: aquecimento da piscina</h3>
+
+    <h4>Objetivo</h4>
+    <p>
+      Investigar como o volume de água, a diferença de temperatura
+      e a eficiência da bomba de calor influenciam a energia necessária
+      para aquecer uma piscina.
+    </p>
+
+    <h4>Como funciona o experimento?</h4>
+    <ol>
+      <li>Informe o volume de água da piscina.</li>
+      <li>Escolha a temperatura inicial.</li>
+      <li>Defina a temperatura desejada.</li>
+      <li>Informe a potência elétrica da bomba de calor.</li>
+      <li>Escolha o COP estimado e clique em calcular.</li>
+      <li>Observe a energia térmica e o consumo elétrico estimados.</li>
+    </ol>
+
+    <div class="conceito-lab">
+      <strong>O que está acontecendo?</strong>
+      <p>
+        A água precisa receber energia térmica para aumentar sua
+        temperatura. Quanto maior o volume de água ou a diferença
+        de temperatura, maior será a energia necessária.
+      </p>
+      <p>
+        O COP representa a relação entre a energia térmica fornecida
+        pela bomba de calor e a energia elétrica consumida.
+        Por exemplo, um COP igual a 4 significa que, em condições
+        consideradas, o equipamento fornece aproximadamente 4 kWh
+        de calor para cada 1 kWh de eletricidade consumida.
+      </p>
+    </div>
+
+    <h4>Desafio do laboratório</h4>
+    <p>
+      Aumente o volume da piscina e observe o consumo estimado.
+      Depois, mantenha o volume e aumente o COP. O que acontece?
+    </p>
+
+    <p class="pergunta">
+      <strong>Conclusão esperada:</strong>
+      a energia necessária depende do volume e da variação de
+      temperatura. Uma bomba de calor com COP maior tende a consumir
+      menos eletricidade para fornecer a mesma quantidade de calor.
+    </p>
+  </div>
+</section>
+
+<!-- SUSTENTABILIDADE -->
+<section id="sustentabilidade" class="secao">
+  <span class="etiqueta">Consciência ambiental</span>
+  <h2>Sustentabilidade</h2>
+
+  <p>
+    A energia solar é uma fonte renovável. Seu uso pode contribuir
+    para reduzir a dependência de fontes fósseis e as emissões
+    associadas à geração de eletricidade.
+  </p>
+
+  <div class="grade cards">
+    <article class="card">
+      <span class="icone">🌱</span>
+      <h3>Benefícios</h3>
       <ul>
-        <li>Redução da eletricidade comprada da rede, dependendo da geração e do consumo.</li>
-        <li>Menores emissões operacionais quando substitui eletricidade de maior intensidade de carbono.</li>
-        <li>Geração local e diversificação da matriz elétrica.</li>
-        <li>Vida útil longa dos módulos e pouca manutenção operacional.</li>
+        <li>Fonte renovável de energia.</li>
+        <li>Redução potencial das emissões.</li>
+        <li>Geração elétrica próxima ao consumo.</li>
+        <li>Possibilidade de economia ao longo do tempo.</li>
       </ul>
     </article>
-    <article class="impact-card negative">
-      <span>−</span><h3>Desafios e impactos</h3>
+
+    <article class="card">
+      <span class="icone">♻️</span>
+      <h3>Desafios</h3>
       <ul>
-        <li>Extração e processamento de matérias-primas consomem energia e recursos.</li>
-        <li>Fabricação e transporte geram emissões e resíduos.</li>
-        <li>É necessário planejar reciclagem e destinação ao fim da vida útil.</li>
-        <li>Geração varia com clima, horário, orientação e sombreamento.</li>
+        <li>Impactos da fabricação dos painéis.</li>
+        <li>Uso de matérias-primas.</li>
+        <li>Necessidade de reciclagem e descarte correto.</li>
+        <li>Dependência das condições de geração solar.</li>
       </ul>
     </article>
   </div>
-  <div class="question-band">
-    <p class="eyebrow">PENSE E DISCUTA</p>
-    <h3>O que é mais sustentável: produzir energia ou evitar desperdício?</h3>
-    <p>As duas ações são importantes. Reduzir perdas térmicas da piscina, usar capa térmica, programar o aquecimento e manter os equipamentos eficientes pode diminuir a energia necessária antes mesmo de ampliar a geração.</p>
+
+  <div class="card">
+    <h3>Reflexão</h3>
+    <p>
+      A tecnologia solar não elimina todos os impactos ambientais.
+      Seu benefício depende de planejamento, instalação adequada,
+      manutenção e destinação correta dos equipamentos ao fim da vida útil.
+    </p>
   </div>
 </section>
 
-<section class="section dark-section" id="fisica">
-  <div class="section-heading">
-    <p class="eyebrow">05 — FÍSICA E TECNOCIÊNCIA</p>
-    <h2>Os fundamentos por trás da tecnologia</h2>
-  </div>
-  <div class="accordion">
-    <details open>
-      <summary>Ondas eletromagnéticas</summary>
-      <div>
-        <p>São oscilações acopladas dos campos elétrico e magnético que se propagam transportando energia. No vácuo, propagam-se à velocidade da luz, aproximadamente 3,0 × 10⁸ m/s.</p>
-        <p>O espectro eletromagnético inclui ondas de rádio, micro-ondas, infravermelho, luz visível, ultravioleta, raios X e raios gama. A relação entre velocidade, frequência e comprimento de onda é <b>c = λ · f</b>.</p>
-      </div>
-    </details>
-    <details>
-      <summary>Radiação do corpo negro</summary>
-      <div>
-        <p>Um corpo negro ideal absorve toda a radiação incidente e emite radiação cujo espectro depende da temperatura. Ao aumentar a temperatura, aumenta a energia total emitida e o pico do espectro desloca-se para comprimentos de onda menores.</p>
-        <p>A lei de Wien relaciona a temperatura ao comprimento de onda de máxima emissão: <b>λmáx · T ≈ 2,898 × 10⁻³ m·K</b>. Esse modelo foi essencial para o nascimento da física quântica.</p>
-      </div>
-    </details>
-    <details>
-      <summary>Efeito fotoelétrico</summary>
-      <div>
-        <p>Einstein explicou que a luz pode transferir energia em pacotes. No efeito fotoelétrico externo, a energia cinética máxima dos elétrons emitidos é dada por <b>Kmáx = h·f − Φ</b>, quando f é maior ou igual à frequência de corte.</p>
-        <p>Essa explicação mostrou que a luz apresenta comportamento corpuscular, complementando sua descrição ondulatória.</p>
-      </div>
-    </details>
+<!-- FÍSICA -->
+<section id="fisica" class="secao secao-clara">
+  <span class="etiqueta">Conhecimento científico</span>
+  <h2>Física por trás do projeto</h2>
+
+  <div class="grade cards">
+    <article class="card">
+      <h3>Energia</h3>
+      <p>Energia é a capacidade de produzir transformações. Neste projeto, estudamos energia luminosa, elétrica e térmica.</p>
+    </article>
+
+    <article class="card">
+      <h3>Radiação eletromagnética</h3>
+      <p>A luz solar é uma forma de radiação eletromagnética que transporta energia.</p>
+    </article>
+
+    <article class="card">
+      <h3>Eletricidade</h3>
+      <p>A corrente elétrica corresponde ao movimento ordenado de cargas elétricas.</p>
+    </article>
+
+    <article class="card">
+      <h3>Termodinâmica</h3>
+      <p>Estuda as transferências de energia e as transformações relacionadas ao calor e à temperatura.</p>
+    </article>
   </div>
 </section>
 
-<section class="section" id="robotica">
-  <div class="section-heading">
-    <p class="eyebrow">06 — ROBÓTICA E AUTOMAÇÃO</p>
-    <h2>Medir, decidir, agir.</h2>
-    <p>Uma montagem didática pode monitorar a piscina e representar como sensores e atuadores participam de um sistema automatizado.</p>
-  </div>
-  <div class="robot-grid">
-    <article><span class="component-symbol">°C</span><h3>Sensor de temperatura</h3><p>Mede a temperatura da água. Exemplos: DS18B20 à prova d'água ou termistor adequado, com instalação e isolamento corretos.</p></article>
-    <article><span class="component-symbol">☀</span><h3>Sensor de luminosidade</h3><p>LDR ou sensor de irradiância pode indicar variações de luz. Um LDR é útil em demonstrações, mas não substitui um instrumento de irradiância calibrado.</p></article>
-    <article><span class="component-symbol">▤</span><h3>Microcontrolador</h3><p>Arduino ou ESP32 lê os sensores, compara valores com limites programados e aciona saídas de controle.</p></article>
-    <article><span class="component-symbol">↗</span><h3>Relé / contator</h3><p>Interface de acionamento. Equipamentos de potência exigem dimensionamento, proteção, isolamento e instalação por profissional habilitado.</p></article>
-    <article><span class="component-symbol">≈</span><h3>Atuadores</h3><p>Bomba de circulação, válvula motorizada ou sinalização. O controle deve respeitar os requisitos do fabricante da bomba de calor.</p></article>
-    <article><span class="component-symbol">▣</span><h3>Display e registro</h3><p>LCD ou painel web pode exibir temperatura, estado do sistema, alertas e histórico de funcionamento.</p></article>
+<!-- ROBÓTICA -->
+<section id="robotica" class="secao">
+  <span class="etiqueta">Tecnologia e automação</span>
+  <h2>Robótica e controle inteligente</h2>
+
+  <p>
+    A automação pode ajudar a monitorar e controlar sistemas de
+    aquecimento, utilizando sensores e dispositivos eletrônicos.
+  </p>
+
+  <div class="grade cards">
+    <article class="card">
+      <span class="icone">🌡️</span>
+      <h3>Sensor de temperatura</h3>
+      <p>Mede a temperatura da água e envia informações ao controlador.</p>
+    </article>
+
+    <article class="card">
+      <span class="icone">⚙️</span>
+      <h3>Controlador</h3>
+      <p>Compara a temperatura medida com a temperatura desejada e decide quando acionar o sistema.</p>
+    </article>
+
+    <article class="card">
+      <span class="icone">🔌</span>
+      <h3>Atuadores</h3>
+      <p>Podem acionar bombas, válvulas e outros equipamentos, conforme o projeto elétrico.</p>
+    </article>
   </div>
 
-  <div class="simulator robot-demo">
-    <div class="sim-head"><span class="number">SIMULAÇÃO DE LÓGICA</span><span class="live-dot">SEM ACIONAMENTO REAL</span></div>
-    <h3>Teste uma regra de controle</h3>
-    <p>Defina a temperatura medida e a temperatura desejada. A simulação indica uma decisão possível, sem controlar equipamentos reais.</p>
-    <div class="calc-grid">
-      <div><label for="waterTemp">Temperatura da água (°C)</label><input id="waterTemp" type="range" min="15" max="40" value="25"><output id="waterTempValue">25 °C</output></div>
-      <div><label for="targetTemp">Temperatura desejada (°C)</label><input id="targetTemp" type="range" min="20" max="35" value="28"><output id="targetTempValue">28 °C</output></div>
-    </div>
-    <div id="controlState" class="control-state" aria-live="polite">Abaixo da meta: solicitar aquecimento (simulação).</div>
-    <p class="small-note">Em um sistema real, a lógica inclui histerese, fluxo mínimo, alarmes, intertravamentos e proteções independentes.</p>
-  </div>
-
-  <div class="libras-box">
-    <div>
-      <span class="eyebrow">ACESSIBILIDADE</span>
-      <h3>Conteúdo em Libras</h3>
-      <p>Área preparada para incorporar vídeos com interpretação em Libras. Insira aqui vídeos produzidos ou licenciados pelo grupo, com título e descrição.</p>
-    </div>
-    <div class="video-placeholder" role="img" aria-label="Espaço reservado para vídeo em Libras">
-      <span>▶</span><small>VÍDEO EM LIBRAS<br>ESPAÇO RESERVADO</small>
-    </div>
+  <div class="card">
+    <h3>Exemplo de funcionamento</h3>
+    <p>
+      Se a temperatura da piscina estiver abaixo do valor programado,
+      o controlador pode solicitar o funcionamento da bomba de calor.
+      Quando a temperatura desejada for alcançada, o sistema pode
+      interromper o aquecimento.
+    </p>
+    <p class="nota">
+      Este site é educativo. Ele não está conectado aos equipamentos
+      reais da piscina e não comanda motores ou sistemas elétricos.
+    </p>
   </div>
 </section>
 
-<section class="section group-section" id="grupo">
-  <div class="section-heading">
-    <p class="eyebrow">07 — QUEM INVESTIGOU</p>
-    <h2>Conhecimento é construção coletiva.</h2>
-    <p>Projeto interdisciplinar desenvolvido pela turma 2M.</p>
+<!-- LIBRAS -->
+<section id="libras" class="secao secao-clara">
+  <span class="etiqueta">Acessibilidade</span>
+  <h2>Conteúdo em Libras</h2>
+
+  <p>
+    Este espaço está reservado para vídeos explicativos em Língua
+    Brasileira de Sinais (Libras).
+  </p>
+
+  <div class="card libras">
+    <span class="icone">🤟</span>
+    <h3>Vídeos em Libras</h3>
+    <p>Insira aqui os vídeos de tradução dos conteúdos do projeto.</p>
+    <p class="nota">Os vídeos ainda precisam ser adicionados pela equipe.</p>
   </div>
-  <div class="team-grid">
-    <div class="team-member"><span>03</span><b>Camilly</b></div>
-    <div class="team-member"><span>09</span><b>Gloria</b></div>
-    <div class="team-member"><span>10</span><b>Jiayu</b></div>
-    <div class="team-member"><span>12</span><b>Julia E.</b></div>
-  </div>
-  <div class="teachers">
-    <div><small>FÍSICA E TECNOCIÊNCIA</small><b>Professor Paulo</b></div>
-    <div><small>ROBÓTICA</small><b>Professor Levi</b></div>
-    <div><small>PROGRAMAÇÃO</small><b>Professor Angelo</b></div>
-  </div>
-  <div class="closing-mark"><span>☼</span><p>SOL & ÁGUA<br><b>Ciência que transforma energia.</b></p></div>
 </section>
+
+<!-- GRUPO -->
+<section id="grupo" class="secao">
+  <span class="etiqueta">Quem somos</span>
+  <h2>Nosso grupo</h2>
+
+  <p>
+    Este projeto foi desenvolvido para aproximar ciência, tecnologia
+    e sustentabilidade da realidade da comunidade escolar.
+  </p>
+
+  <div class="card">
+    <h3>Equipe do projeto</h3>
+    <p>Integrantes: insira aqui os nomes dos alunos participantes.</p>
+    <p>Professores orientadores: insira aqui os nomes dos professores.</p>
+    <p>Instituição: CEP.</p>
+  </div>
+</section>
+
 </main>
 
-<footer>
-  <span>CEP · TURMA 2M · 2026</span>
-  <span>Projeto educacional interdisciplinar</span>
-  <a href="#inicio">Voltar ao topo ↑</a>
+<footer class="rodape">
+  <p><strong>LUZ QUE MOVE</strong> — Da luz do Sol à água aquecida.</p>
+  <p>Projeto educacional do CEP.</p>
+  <a href="#inicio">Voltar ao início ↑</a>
 </footer>
+
 </body>
 </html>
