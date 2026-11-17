@@ -10,6 +10,11 @@
   --green: #c9dfbd;
   --line: rgba(20,42,53,.18);
   --scale: 1;
+  
+/* Acessibilidade do botão VLibras */
+--vlibras-btn-focus-visible-outline: 3px solid #e09c00;
+--vlibras-btn-focus-visible-shadow: 0 0 0 4px rgba(224, 156, 0, 0.3);
+
 }
 
 * { box-sizing: border-box; }
